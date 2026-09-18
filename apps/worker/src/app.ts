@@ -1,5 +1,6 @@
 import {
   createGameRequestSchema,
+  gameModeSchema,
   INTERNAL_SLUG,
   submitGuessRequestSchema,
   type ApiErrorResponse,
@@ -77,6 +78,21 @@ export function createApp(dependencies: AppDependencies = {}) {
       context.req.param("gameId"),
     );
     return context.json(game);
+  });
+
+  app.get("/api/leaderboard", async (context) => {
+    const parsedMode = gameModeSchema.safeParse(context.req.query("mode"));
+    if (!parsedMode.success) {
+      return context.json(
+        errorResponse("INVALID_MODE", "Mode must be satellite or metro"),
+        400,
+      );
+    }
+
+    const entries = await repositoryFactory(context.env).getLeaderboard(
+      parsedMode.data,
+    );
+    return context.json({ entries, mode: parsedMode.data });
   });
 
   app.post("/api/games/:gameId/guesses", async (context) => {

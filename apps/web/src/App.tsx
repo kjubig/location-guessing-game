@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 import { MetroClue } from "./MetroClue";
+import { LeaderboardPanel } from "./LeaderboardPanel";
 
 const GuessMap = lazy(() =>
   import("./GuessMap").then((module) => ({ default: module.GuessMap })),
@@ -186,6 +187,12 @@ export function App() {
                   : "playDescription",
               )}
             </p>
+            <LeaderboardPanel
+              emptyLabel={t("leaderboardEmpty")}
+              loadingLabel={t("leaderboardLoading")}
+              mode={selectedMode}
+              title={t("leaderboardTitle")}
+            />
           </section>
           <form
             className="start-card"
@@ -241,6 +248,12 @@ export function App() {
               </div>
             ))}
           </div>
+          <LeaderboardPanel
+            emptyLabel={t("leaderboardEmpty")}
+            loadingLabel={t("leaderboardLoading")}
+            mode={game.mode}
+            title={t("leaderboardTitle")}
+          />
           <button
             className="primary-button"
             onClick={() => {

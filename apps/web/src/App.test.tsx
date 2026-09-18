@@ -28,6 +28,12 @@ vi.mock("./MetroClue", () => ({
   MetroClue: ({ url }: { url: string }) => <div>Test metro clue: {url}</div>,
 }));
 
+vi.mock("./LeaderboardPanel", () => ({
+  LeaderboardPanel: ({ mode }: { mode: string }) => (
+    <div>Test leaderboard: {mode}</div>
+  ),
+}));
+
 const firstRound: GameSnapshot = {
   completedRounds: [],
   currentRound: {

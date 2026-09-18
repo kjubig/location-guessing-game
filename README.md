@@ -45,6 +45,8 @@ implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.m
 - [M2 technical journal](docs/milestones/M2.md) — OSM acquisition, anonymized
   metro geometry, D1 migration, renderer, and verification notes.
 - [Data formats](docs/DATA_FORMATS.md) — city catalog and future clue manifests.
+- [M3 implementation journal](docs/milestones/M3.md) — ranking transactions,
+  abuse controls, and verification notes.
 
 ## Quick start
 

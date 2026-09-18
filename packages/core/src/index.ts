@@ -80,6 +80,17 @@ export interface GameSnapshot {
   totalScore: number;
 }
 
+export interface LeaderboardEntry {
+  nickname: string;
+  rank: number;
+  score: number;
+}
+
+export interface LeaderboardResponse {
+  entries: LeaderboardEntry[];
+  mode: GameMode;
+}
+
 export interface HealthResponse {
   environment: string;
   service: string;

@@ -1,4 +1,9 @@
-import type { Coordinate, GameSnapshot } from "@golukituki/core";
+import type {
+  Coordinate,
+  GameMode,
+  GameSnapshot,
+  LeaderboardEntry,
+} from "@golukituki/core";
 import { describe, expect, it } from "vitest";
 
 import { createApp } from "../src/app";
@@ -39,6 +44,14 @@ class MemoryGameRepository implements GameRepository {
       return Promise.reject(new GameNotFoundError());
     }
     return Promise.resolve(this.game);
+  }
+
+  getLeaderboard(mode: GameMode): Promise<LeaderboardEntry[]> {
+    return Promise.resolve(
+      mode === "metro"
+        ? [{ nickname: "Metro Player", rank: 1, score: 21_500 }]
+        : [],
+    );
   }
 
   async submitGuess(gameId: string, guess: Coordinate): Promise<GameSnapshot> {
@@ -189,6 +202,33 @@ describe("worker API", () => {
     expect(missingRoute.status).toBe(404);
     await expect(missingRoute.json()).resolves.toEqual({
       error: { code: "NOT_FOUND", message: "API route not found" },
+    });
+  });
+
+  it("returns a separate, ranked top ten for the requested mode", async () => {
+    const response = await testApp().request(
+      "http://localhost/api/leaderboard?mode=metro",
+      {},
+      testEnvironment,
+    );
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      entries: [{ nickname: "Metro Player", rank: 1, score: 21_500 }],
+      mode: "metro",
+    });
+  });
+
+  it("rejects an unknown leaderboard mode", async () => {
+    const response = await testApp().request(
+      "http://localhost/api/leaderboard?mode=unknown",
+      {},
+      testEnvironment,
+    );
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toMatchObject({
+      error: { code: "INVALID_MODE" },
     });
   });
 });

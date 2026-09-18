@@ -428,6 +428,68 @@ h1 {
   line-height: 1.65;
 }
 
+.leaderboard {
+  margin-top: 32px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+.leaderboard__heading {
+  padding: 15px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.leaderboard__heading h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.leaderboard__heading span {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+.leaderboard__status {
+  margin: 0;
+  padding: 20px 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.leaderboard__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.leaderboard__list li {
+  min-height: 44px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+.leaderboard__list li + li {
+  border-top: 1px solid var(--line);
+}
+.leaderboard__rank {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.leaderboard__nickname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.leaderboard__list strong {
+  font-variant-numeric: tabular-nums;
+}
+.summary-screen > .leaderboard {
+  margin: 0 0 28px;
+}
+
 .status-card {
   position: relative;
   overflow: hidden;

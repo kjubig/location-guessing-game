@@ -5,6 +5,7 @@ import {
   type GameMode,
   type GameSnapshot,
   haversineDistanceKm,
+  type LeaderboardEntry,
   normalizeNickname,
   scoreScaleKm,
 } from "@golukituki/core";
@@ -40,6 +41,11 @@ interface RoundRow extends AssetRow {
 
 interface ActiveRoundRow extends RoundRow, GameRow {}
 
+interface LeaderboardRow {
+  nickname: string;
+  score: number;
+}
+
 export interface CreateGameInput {
   mode: GameMode;
   nickname: string;
@@ -48,6 +54,7 @@ export interface CreateGameInput {
 export interface GameRepository {
   createGame(input: CreateGameInput): Promise<GameSnapshot>;
   getGame(gameId: string): Promise<GameSnapshot>;
+  getLeaderboard(mode: GameMode): Promise<LeaderboardEntry[]>;
   submitGuess(gameId: string, guess: Coordinate): Promise<GameSnapshot>;
 }
 
@@ -139,6 +146,17 @@ export class D1GameRepository implements GameRepository {
     const statements = [
       this.database
         .prepare(
+          `DELETE FROM games
+           WHERE id IN (
+             SELECT id FROM games
+             WHERE status = 'active' AND expires_at <= ?
+             ORDER BY expires_at
+             LIMIT 25
+           )`,
+        )
+        .bind(now.toISOString()),
+      this.database
+        .prepare(
           `INSERT INTO games (
              id, nickname, normalized_nickname, mode, expires_at
            ) VALUES (?, ?, ?, ?, ?)`,
@@ -182,6 +200,25 @@ export class D1GameRepository implements GameRepository {
     return toSnapshot(game, rounds);
   }
 
+  async getLeaderboard(mode: GameMode): Promise<LeaderboardEntry[]> {
+    const result = await this.database
+      .prepare(
+        `SELECT nickname, score
+         FROM leaderboard_entries
+         WHERE mode = ?
+         ORDER BY score DESC, completed_at ASC, normalized_nickname ASC
+         LIMIT 10`,
+      )
+      .bind(mode)
+      .all<LeaderboardRow>();
+
+    return result.results.map((entry, index) => ({
+      nickname: entry.nickname,
+      rank: index + 1,
+      score: entry.score,
+    }));
+  }
+
   async submitGuess(gameId: string, guess: Coordinate): Promise<GameSnapshot> {
     const round = await this.database
       .prepare(
@@ -204,6 +241,9 @@ export class D1GameRepository implements GameRepository {
     if (round.status !== "active") {
       throw new RoundAlreadyGuessedError("Game is already complete");
     }
+    if (round.guessed_at !== null) {
+      throw new RoundAlreadyGuessedError("Round already has a guess");
+    }
     if (isExpired(round.expires_at)) throw new GameExpiredError("Game expired");
 
     const answer = {
@@ -213,42 +253,76 @@ export class D1GameRepository implements GameRepository {
     const distanceKm = haversineDistanceKm(guess, answer);
     const points = calculateRoundPoints(distanceKm, scoreScaleKm(round.mode));
     const guessedAt = new Date().toISOString();
-    const updateResult = await this.database
-      .prepare(
-        `UPDATE game_rounds
+    const complete = round.current_round === GAME_ROUND_COUNT;
+    const statements = [
+      this.database
+        .prepare(
+          `UPDATE game_rounds
          SET guess_latitude = ?, guess_longitude = ?, distance_km = ?,
              points = ?, guessed_at = ?
          WHERE id = ? AND guessed_at IS NULL`,
-      )
-      .bind(
-        guess.latitude,
-        guess.longitude,
-        distanceKm,
-        points,
-        guessedAt,
-        round.round_id,
-      )
-      .run();
-    if (updateResult.meta.changes !== 1) {
-      throw new RoundAlreadyGuessedError("Round already has a guess");
-    }
-
-    const complete = round.current_round === GAME_ROUND_COUNT;
-    await this.database
-      .prepare(
-        `UPDATE games
+        )
+        .bind(
+          guess.latitude,
+          guess.longitude,
+          distanceKm,
+          points,
+          guessedAt,
+          round.round_id,
+        ),
+      this.database
+        .prepare(
+          `UPDATE games
          SET total_score = total_score + ?, status = ?, current_round = ?,
              completed_at = ?
-         WHERE id = ? AND status = 'active'`,
-      )
-      .bind(
-        points,
-        complete ? "complete" : "active",
-        complete ? GAME_ROUND_COUNT : round.current_round + 1,
-        complete ? guessedAt : null,
-        gameId,
-      )
-      .run();
+         WHERE id = ? AND status = 'active' AND current_round = ?
+           AND EXISTS (
+             SELECT 1 FROM game_rounds
+             WHERE id = ? AND guessed_at = ?
+           )`,
+        )
+        .bind(
+          points,
+          complete ? "complete" : "active",
+          complete ? GAME_ROUND_COUNT : round.current_round + 1,
+          complete ? guessedAt : null,
+          gameId,
+          round.current_round,
+          round.round_id,
+          guessedAt,
+        ),
+    ];
+
+    if (complete) {
+      statements.push(
+        this.database
+          .prepare(
+            `INSERT INTO leaderboard_entries (
+               mode, normalized_nickname, nickname, score, game_id, completed_at
+             )
+             SELECT
+               mode, normalized_nickname, nickname, total_score, id, completed_at
+             FROM games
+             WHERE id = ? AND status = 'complete' AND completed_at = ?
+             ON CONFLICT(mode, normalized_nickname) DO UPDATE SET
+               nickname = excluded.nickname,
+               score = excluded.score,
+               game_id = excluded.game_id,
+               completed_at = excluded.completed_at
+             WHERE excluded.score > leaderboard_entries.score
+                OR (
+                  excluded.score = leaderboard_entries.score
+                  AND excluded.completed_at < leaderboard_entries.completed_at
+                )`,
+          )
+          .bind(gameId, guessedAt),
+      );
+    }
+
+    const results = await this.database.batch(statements);
+    if (results[0]?.meta.changes !== 1 || results[1]?.meta.changes !== 1) {
+      throw new RoundAlreadyGuessedError("Round already has a guess");
+    }
 
     return this.getGame(gameId);
   }

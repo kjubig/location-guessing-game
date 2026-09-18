@@ -61,6 +61,9 @@ const resources = {
       summary: "Zobacz podsumowanie",
       gameComplete: "Gra ukończona",
       playAgain: "Zagraj ponownie",
+      leaderboardTitle: "Najlepsze wyniki",
+      leaderboardLoading: "Ładuję ranking…",
+      leaderboardEmpty: "Ranking czeka na pierwszy ukończony wynik.",
     },
   },
   en: {
@@ -123,6 +126,9 @@ const resources = {
       summary: "View summary",
       gameComplete: "Game complete",
       playAgain: "Play again",
+      leaderboardTitle: "Best scores",
+      leaderboardLoading: "Loading leaderboard…",
+      leaderboardEmpty: "The leaderboard is waiting for its first result.",
     },
   },
 } as const;
