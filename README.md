@@ -9,7 +9,8 @@ flows, and milestone retrospectives are documented as the application grows.
 
 ## Current state
 
-M0 establishes the foundation:
+M0 established the foundation. M1 is in progress; its data and API checkpoint
+currently includes:
 
 - React + Vite + TypeScript frontend;
 - Cloudflare Worker API using Hono;
@@ -17,9 +18,12 @@ M0 establishes the foundation:
 - separate production and preview environments;
 - pnpm workspace, tests, linting, formatting, and CI;
 - Python/uv workspace reserved for geospatial pipelines.
+- five real Sentinel-2 development clues with reproducible provenance;
+- nickname validation, distance and server-side scoring primitives;
+- D1 game/round schema and server-controlled game API.
 
-Gameplay arrives in M1. See [the implementation plan](docs/PLAN.md) and
-[architecture decisions](docs/DECISIONS.md).
+The interactive five-round frontend is the remaining M1 work. See [the
+implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.md).
 
 ## Learn how it works
 
@@ -30,6 +34,8 @@ Gameplay arrives in M1. See [the implementation plan](docs/PLAN.md) and
   migrations, and rollback.
 - [M0 technical journal](docs/milestones/M0.md) — what was installed, why, and
   how the foundation was verified.
+- [M1 technical journal](docs/milestones/M1.md) — satellite data, game rules,
+  D1 storage, API contracts, tests, and the current continuation point.
 - [Data formats](docs/DATA_FORMATS.md) — city catalog and future clue manifests.
 
 ## Quick start

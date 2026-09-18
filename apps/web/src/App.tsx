@@ -1,4 +1,5 @@
-import { APP_NAME, type HealthResponse } from "@golukituki/core";
+import type { HealthResponse } from "@golukituki/core";
+import { APP_NAME } from "@golukituki/core/identity";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -13,6 +13,7 @@
   "dependencies": {
     "@golukituki/core": "workspace:*",
     "i18next": "^25.5.2",
+    "maplibre-gl": "^6.10.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-i18next": "^15.7.3"

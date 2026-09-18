@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-18",
+  "purpose": "M1 development fixture pool",
+  "fixtures": [
+    {
+      "assetId": "774cdf0811128739b445",
+      "cityId": "seoul",
+      "publicPath": "/clues/774cdf0811128739b445.png",
+      "answerLocation": {
+        "latitude": 37.5445773,
+        "longitude": 126.9580078
+      },
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1586
+      }
+    },
+    {
+      "assetId": "1b2d40b729dd7219af43",
+      "cityId": "busan",
+      "publicPath": "/clues/1b2d40b729dd7219af43.png",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 129.0673828
+      },
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3516,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "687ba6aa6f5209f0c5b6",
+      "cityId": "incheon",
+      "publicPath": "/clues/687ba6aa6f5209f0c5b6.png",
+      "answerLocation": {
+        "latitude": 37.4748581,
+        "longitude": 126.6943359
+      },
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SBG_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.00453,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3489,
+        "y": 1587
+      }
+    },
+    {
+      "assetId": "029690a787769dc11d64",
+      "cityId": "daegu",
+      "publicPath": "/clues/029690a787769dc11d64.png",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 128.6279297
+      },
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SDE_20240518T054112",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.000511,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3511,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "c2d2ab5c2b7d0aa1f221",
+      "cityId": "daejeon",
+      "publicPath": "/clues/c2d2ab5c2b7d0aa1f221.png",
+      "answerLocation": {
+        "latitude": 36.350527,
+        "longitude": 127.3974609
+      },
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3497,
+        "y": 1603
+      }
+    }
+  ]
+}

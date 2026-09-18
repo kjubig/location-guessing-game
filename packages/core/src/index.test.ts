@@ -1,6 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import { APP_NAME, INTERNAL_SLUG, MILESTONES, REPOSITORY_NAME } from "./index";
+import {
+  APP_NAME,
+  calculateRoundPoints,
+  createGameRequestSchema,
+  haversineDistanceKm,
+  INTERNAL_SLUG,
+  MILESTONES,
+  nicknameSchema,
+  REPOSITORY_NAME,
+} from "./index";
 
 describe("project identity", () => {
   it("keeps display, internal, and repository names independent", () => {
@@ -11,5 +20,46 @@ describe("project identity", () => {
 
   it("defines the agreed delivery milestones", () => {
     expect(MILESTONES).toEqual(["M0", "M1", "M2", "M3", "M4"]);
+  });
+});
+
+describe("nickname validation", () => {
+  it("normalizes Unicode and accepts a two-character Hangul nickname", () => {
+    expect(nicknameSchema.parse("  \u1106\u1175\u11AB\u1109\u116E  ")).toBe(
+      "민수",
+    );
+  });
+
+  it("rejects repeated whitespace and unsupported punctuation", () => {
+    expect(nicknameSchema.safeParse("Geo  Player").success).toBe(false);
+    expect(nicknameSchema.safeParse("Geo<script>").success).toBe(false);
+  });
+
+  it("parses the create-game contract", () => {
+    expect(
+      createGameRequestSchema.parse({ nickname: "Kjubig", mode: "satellite" }),
+    ).toEqual({ nickname: "Kjubig", mode: "satellite" });
+  });
+});
+
+describe("satellite scoring", () => {
+  it("calculates haversine distance for known coordinates", () => {
+    const distance = haversineDistanceKm(
+      { latitude: 37.5665, longitude: 126.978 },
+      { latitude: 35.1796, longitude: 129.0756 },
+    );
+    expect(distance).toBeGreaterThan(320);
+    expect(distance).toBeLessThan(330);
+  });
+
+  it("awards 5000 points at the answer and decays exponentially", () => {
+    expect(calculateRoundPoints(0)).toBe(5_000);
+    expect(calculateRoundPoints(50)).toBe(1_839);
+    expect(calculateRoundPoints(100)).toBe(677);
+  });
+
+  it("rejects invalid scoring input", () => {
+    expect(() => calculateRoundPoints(-1)).toThrow(RangeError);
+    expect(() => calculateRoundPoints(1, 0)).toThrow(RangeError);
   });
 });
