@@ -18,7 +18,7 @@ frontend używa lokalnego `@golukituki/core`, a nie pakietu z internetu.
 ## 2. Uruchomienie
 
 ```powershell
-pnpm dev
+corepack pnpm dev
 ```
 
 Polecenie najpierw buduje pakiet webowy potrzebny Wranglerowi, a potem uruchamia
@@ -56,7 +56,10 @@ Git. W Cloudflare ustawia się je jako secrets, nigdy jako plik w repozytorium.
 
 ## Typowe problemy
 
-- Brak `pnpm`: wykonaj polecenia Corepack z sekcji 1.
+- Brak `pnpm`: użyj `corepack pnpm <polecenie>` albo wykonaj polecenia Corepack
+  z sekcji 1, aby aktywować skrót `pnpm` globalnie. Skrypty repozytorium same
+  wywołują zagnieżdżone polecenia przez Corepack, więc
+  `corepack pnpm dev` działa również bez wcześniejszego `corepack enable`.
 - Błąd `/api/health`: upewnij się, że proces Workera działa na porcie 8787.
 - Błąd migracji remote: placeholder D1 nie został jeszcze zastąpiony prawdziwym
   `database_id`.
