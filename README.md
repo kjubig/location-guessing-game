@@ -9,20 +9,24 @@ flows, and milestone retrospectives are documented as the application grows.
 
 ## Current state
 
-M0 established the foundation. M1 is in progress; its data and API checkpoint
-currently includes:
+M0 established the foundation. The M1 satellite vertical slice is complete in
+the local environment and includes:
 
 - React + Vite + TypeScript frontend;
 - Cloudflare Worker API using Hono;
 - Cloudflare Static Assets and D1 configuration;
 - separate production and preview environments;
 - pnpm workspace, tests, linting, formatting, and CI;
-- Python/uv workspace reserved for geospatial pipelines.
+- Python/uv workspace reserved for geospatial pipelines;
 - five real Sentinel-2 development clues with reproducible provenance;
 - nickname validation, distance and server-side scoring primitives;
-- D1 game/round schema and server-controlled game API.
+- D1 game/round schema and server-controlled game API;
+- a responsive five-round interface with game restore, result markers and line,
+  summary, Polish/English translations, and light/dark themes;
+- component, API, domain, data-leak, and production-build verification.
 
-The interactive five-round frontend is the remaining M1 work. See [the
+The next implementation milestone is M2 (metro mode). The first public
+Cloudflare deployment remains a separate owner setup step. See [the
 implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.md).
 
 ## Learn how it works

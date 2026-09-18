@@ -325,7 +325,8 @@ reviewable and independently green.
 
 ## Implementation state
 
-`DECISIONS.md` has been accepted with amendments and M0 is active. External
-deployment remains pending until the private GitHub repository and Cloudflare
-resources are created by the owner. Package versions and small implementation
-details may still change when the lockfile is generated and checks are run.
+`DECISIONS.md` has been accepted with amendments. The repository foundation and
+the complete M1 satellite vertical slice are implemented and verified locally.
+The GitHub repository exists; the first public Cloudflare deployment remains an
+M0 owner action because it requires the owner's Cloudflare account and real D1
+resource IDs. M2 has not started.
