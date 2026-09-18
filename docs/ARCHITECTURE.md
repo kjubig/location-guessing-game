@@ -34,9 +34,10 @@ wywołań Workera. Reguła `not_found_handling: single-page-application` zwraca
 ### Worker
 
 Worker jest małym programem TypeScript uruchamianym na infrastrukturze Cloudflare.
-Hono pełni rolę routera: łączy metodę i ścieżkę HTTP z właściwą funkcją. Obecny
-endpoint `GET /api/health` potwierdza, że API działa. W M1 Worker będzie wybierał
-rundy, przyjmował strzały i liczył punkty.
+Hono pełni rolę routera: łączy metodę i ścieżkę HTTP z właściwą funkcją. Endpoint
+`GET /api/health` potwierdza, że API działa. Worker wybiera rundy, przyjmuje
+strzały i liczy punkty dla trybu satelitarnego oraz metra. Przeglądarka podaje
+tylko tryb, nick i współrzędne strzału — nigdy własny wynik.
 
 Worker nie ma hasła do D1 w zmiennej środowiskowej. `binding` o nazwie `DB` jest
 uprawnieniem wstrzykiwanym przez Cloudflare. Kod wywołuje `env.DB.prepare(...)`,
@@ -97,8 +98,10 @@ dojrzalsze w Pythonie niż w TypeScript. Nie działa podczas wejścia użytkowni
 stronę. Jest uruchamiany przez programistę, a jego wyniki trafiają do statycznych
 plików lub kontrolowanego seeda D1.
 
-W M1 pipeline przygotuje uproszczoną mapę Natural Earth. W M2 pobierze OSM i
-utworzy fragmenty metra oraz małe kafelki mapy. W M4 przygotuje obrazy Sentinel-2.
+W M1 pipeline przygotował uproszczoną mapę Natural Earth i kadry Sentinel-2. W
+M2 pobiera OSM, zapisuje prywatny cache i tworzy anonimowe fragmenty metra.
+Szczegółowe kafelki mapy są następnym krokiem M2. W M4 pipeline przygotuje pełną
+pulę obrazów Sentinel-2.
 
 ## Gdzie szukać kodu
 

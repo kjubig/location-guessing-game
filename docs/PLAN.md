@@ -327,6 +327,8 @@ reviewable and independently green.
 
 `DECISIONS.md` has been accepted with amendments. The repository foundation and
 the complete M1 satellite vertical slice are implemented and verified locally.
+M2 is active: its real OSM clue pipeline and playable metro vertical slice are
+complete, while the filtered zoom-12 vector basemap remains in progress.
 The GitHub repository exists; the first public Cloudflare deployment remains an
 M0 owner action because it requires the owner's Cloudflare account and real D1
 resource IDs. M2 has not started.

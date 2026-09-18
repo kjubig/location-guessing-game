@@ -25,7 +25,9 @@ the local environment and includes:
   summary, Polish/English translations, and light/dark themes;
 - component, API, domain, data-leak, and production-build verification.
 
-The next implementation milestone is M2 (metro mode). The first public
+M2 is now active. Its first playable checkpoint adds five real, anonymized OSM
+metro clues, a server-scored metro mode, and a dedicated SVG renderer. The
+filtered detailed guessing-map tiles remain to be implemented. The first public
 Cloudflare deployment remains a separate owner setup step. See [the
 implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.md).
 
@@ -40,6 +42,8 @@ implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.m
   how the foundation was verified.
 - [M1 technical journal](docs/milestones/M1.md) — satellite data, game rules,
   D1 storage, API contracts, tests, and the current continuation point.
+- [M2 technical journal](docs/milestones/M2.md) — OSM acquisition, anonymized
+  metro geometry, D1 migration, renderer, and verification notes.
 - [Data formats](docs/DATA_FORMATS.md) — city catalog and future clue manifests.
 
 ## Quick start

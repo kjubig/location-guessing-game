@@ -34,3 +34,18 @@ public-domain Natural Earth country dataset for the guessing map.
 The M1 pipeline deliberately uses only Python's standard library. Installing
 `uv` before the raster-processing work in M4 would add a tool without using its
 main benefit: locking external Python dependencies.
+
+## M2 metro fixtures
+
+The metro pipeline also uses the standard library. It downloads bounded OSM
+responses once, caches them in ignored `data/raw/m2-metro/`, and transforms real
+geometry into anonymous local drawing coordinates:
+
+```powershell
+python -m scripts.geodata.src.golukituki_geodata.build_m2_metro
+```
+
+Generated browser files contain only integer canvas points. Real answer
+coordinates, the Overpass query, and the raw-response checksum remain in
+`data/source/m2-metro-fixtures.json`. CI exercises only the deterministic
+transformation and never sends requests to Overpass.
