@@ -4,10 +4,19 @@ import type {
   GameSnapshot,
 } from "@golukituki/core";
 import { APP_NAME } from "@golukituki/core/identity";
-import { type FormEvent, useCallback, useEffect, useState } from "react";
+import {
+  type FormEvent,
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 
-import { GuessMap } from "./GuessMap";
+const GuessMap = lazy(() =>
+  import("./GuessMap").then((module) => ({ default: module.GuessMap })),
+);
 
 type Theme = "dark" | "light";
 const STORAGE_KEY = "golukituki.activeGameId";
@@ -26,7 +35,11 @@ async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
       headers: { "Content-Type": "application/json", ...init?.headers },
     },
   );
-  const body = (await response.json()) as T | ApiErrorResponse;
+  const body = (await response.json().catch(() => undefined)) as
+    T | ApiErrorResponse | undefined;
+  if (!body) {
+    throw new Error(`Server returned an empty response (${response.status})`);
+  }
   if (!response.ok) throw new Error((body as ApiErrorResponse).error.message);
   return body as T;
 }
@@ -200,6 +213,7 @@ export function App() {
           <button
             className="primary-button"
             onClick={() => {
+              localStorage.removeItem(STORAGE_KEY);
               setGame(undefined);
               setNickname("");
             }}
@@ -227,12 +241,17 @@ export function App() {
             </small>
           </section>
           <section className="map-panel">
-            <GuessMap
-              selected={guess}
-              onSelect={selectGuess}
-              disabled={showResult}
-              result={result}
-            />
+            <Suspense
+              fallback={<div className="map-loading">{t("mapLoading")}</div>}
+            >
+              <GuessMap
+                selected={guess}
+                onSelect={selectGuess}
+                disabled={showResult}
+                result={result}
+                label={t("guessMap")}
+              />
+            </Suspense>
             {result ? (
               <div className="result-bar">
                 <div>

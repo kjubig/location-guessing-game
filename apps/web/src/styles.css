@@ -209,6 +209,16 @@ a:focus-visible {
   overflow: hidden;
   border-radius: 18px;
 }
+.map-loading {
+  flex: 1;
+  min-height: 560px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #dce8df;
+  color: #17221d;
+  font-weight: 800;
+}
 .guess-map .maplibregl-canvas {
   cursor: crosshair;
 }

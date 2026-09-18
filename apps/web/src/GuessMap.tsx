@@ -1,5 +1,10 @@
 import * as maplibregl from "maplibre-gl";
-import type { Map as MapLibreMap, MapMouseEvent, Marker } from "maplibre-gl";
+import type {
+  GeoJSONSource,
+  Map as MapLibreMap,
+  MapMouseEvent,
+  Marker,
+} from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useEffect, useRef } from "react";
 
@@ -7,6 +12,7 @@ import type { Coordinate, RoundResult } from "@golukituki/core";
 
 interface GuessMapProps {
   disabled?: boolean;
+  label?: string;
   onSelect?: (coordinate: Coordinate) => void;
   result?: RoundResult;
   selected?: Coordinate;
@@ -14,6 +20,7 @@ interface GuessMapProps {
 
 export function GuessMap({
   disabled,
+  label = "Mapa zgadywania",
   onSelect,
   result,
   selected,
@@ -21,6 +28,13 @@ export function GuessMap({
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap>(null);
   const markersRef = useRef<Marker[]>([]);
+  const disabledRef = useRef(disabled);
+  const onSelectRef = useRef(onSelect);
+
+  useEffect(() => {
+    disabledRef.current = disabled;
+    onSelectRef.current = onSelect;
+  }, [disabled, onSelect]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -65,8 +79,11 @@ export function GuessMap({
       new maplibregl.AttributionControl({ customAttribution: "Natural Earth" }),
     );
     map.on("click", (event: MapMouseEvent) => {
-      if (!disabled) {
-        onSelect?.({ latitude: event.lngLat.lat, longitude: event.lngLat.lng });
+      if (!disabledRef.current) {
+        onSelectRef.current?.({
+          latitude: event.lngLat.lat,
+          longitude: event.lngLat.lng,
+        });
       }
     });
     mapRef.current = map;
@@ -74,7 +91,7 @@ export function GuessMap({
       map.remove();
       mapRef.current = null;
     };
-  }, [disabled, onSelect]);
+  }, []);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -95,16 +112,50 @@ export function GuessMap({
     if (result) {
       addMarker(result.guess, "guess-marker--guess");
       addMarker(result.answer, "guess-marker--answer");
+      const renderResult = () => {
+        const line = {
+          type: "Feature" as const,
+          properties: {},
+          geometry: {
+            type: "LineString" as const,
+            coordinates: [
+              [result.guess.longitude, result.guess.latitude],
+              [result.answer.longitude, result.answer.latitude],
+            ],
+          },
+        };
+        const source = map.getSource<GeoJSONSource>("result-line");
+        if (source) void source.setData(line);
+        else {
+          map.addSource("result-line", { type: "geojson", data: line });
+          map.addLayer({
+            id: "result-line",
+            type: "line",
+            source: "result-line",
+            paint: {
+              "line-color": "#e84f36",
+              "line-dasharray": [2, 1.5],
+              "line-width": 3,
+            },
+          });
+        }
+        const bounds = new maplibregl.LngLatBounds()
+          .extend([result.guess.longitude, result.guess.latitude])
+          .extend([result.answer.longitude, result.answer.latitude]);
+        map.fitBounds(bounds, { duration: 700, maxZoom: 8, padding: 90 });
+      };
+      if (map.loaded()) renderResult();
+      else map.once("load", renderResult);
     } else if (selected) {
       addMarker(selected, "guess-marker--guess");
+    } else {
+      if (map.getLayer("result-line")) {
+        map.removeLayer("result-line");
+        map.removeSource("result-line");
+      }
+      map.easeTo({ center: [127.7, 36.25], zoom: 5.4, duration: 400 });
     }
   }, [result, selected]);
 
-  return (
-    <div
-      className="guess-map"
-      ref={containerRef}
-      aria-label="Mapa zgadywania"
-    />
-  );
+  return <div className="guess-map" ref={containerRef} aria-label={label} />;
 }
