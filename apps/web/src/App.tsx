@@ -1,160 +1,265 @@
-import type { HealthResponse } from "@golukituki/core";
+import type {
+  ApiErrorResponse,
+  Coordinate,
+  GameSnapshot,
+} from "@golukituki/core";
 import { APP_NAME } from "@golukituki/core/identity";
-import { useEffect, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-type ApiState = "checking" | "offline" | "online";
-type Theme = "dark" | "light";
+import { GuessMap } from "./GuessMap";
 
-const architecture = ["browser", "worker", "database"] as const;
-const modes = ["satellite", "metro"] as const;
+type Theme = "dark" | "light";
+const STORAGE_KEY = "golukituki.activeGameId";
 
 function getInitialTheme(): Theme {
-  if (typeof window === "undefined") return "light";
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
 }
 
+async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL ?? ""}${path}`,
+    {
+      ...init,
+      headers: { "Content-Type": "application/json", ...init?.headers },
+    },
+  );
+  const body = (await response.json()) as T | ApiErrorResponse;
+  if (!response.ok) throw new Error((body as ApiErrorResponse).error.message);
+  return body as T;
+}
+
 export function App() {
   const { i18n, t } = useTranslation();
-  const [apiState, setApiState] = useState<ApiState>("checking");
-  const [environment, setEnvironment] = useState<string>();
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [nickname, setNickname] = useState("");
+  const [game, setGame] = useState<GameSnapshot>();
+  const [guess, setGuess] = useState<Coordinate>();
+  const [showResult, setShowResult] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    void fetch(`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/health`, {
-      signal: controller.signal,
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Health endpoint is unavailable");
-        return response.json() as Promise<HealthResponse>;
-      })
-      .then((health) => {
-        setEnvironment(health.environment);
-        setApiState("online");
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError")
-          return;
-        setApiState("offline");
-      });
-
-    return () => controller.abort();
+    const gameId = localStorage.getItem(STORAGE_KEY);
+    if (!gameId) return;
+    void apiRequest<GameSnapshot>(`/api/games/${gameId}`)
+      .then(setGame)
+      .catch(() => localStorage.removeItem(STORAGE_KEY));
   }, []);
 
-  const toggleLanguage = () => {
-    void i18n.changeLanguage(i18n.language.startsWith("pl") ? "en" : "pl");
+  const selectGuess = useCallback((coordinate: Coordinate) => {
+    setGuess(coordinate);
+  }, []);
+
+  const startGame = async (event: FormEvent) => {
+    event.preventDefault();
+    setPending(true);
+    setError(undefined);
+    try {
+      const snapshot = await apiRequest<GameSnapshot>("/api/games", {
+        body: JSON.stringify({ nickname, mode: "satellite" }),
+        method: "POST",
+      });
+      localStorage.setItem(STORAGE_KEY, snapshot.gameId);
+      setGame(snapshot);
+      setGuess(undefined);
+    } catch (requestError) {
+      setError(
+        requestError instanceof Error
+          ? requestError.message
+          : t("genericError"),
+      );
+    } finally {
+      setPending(false);
+    }
   };
+
+  const submitGuess = async () => {
+    if (!game || !guess) return;
+    setPending(true);
+    setError(undefined);
+    try {
+      const snapshot = await apiRequest<GameSnapshot>(
+        `/api/games/${game.gameId}/guesses`,
+        { body: JSON.stringify(guess), method: "POST" },
+      );
+      setGame(snapshot);
+      setShowResult(true);
+    } catch (requestError) {
+      setError(
+        requestError instanceof Error
+          ? requestError.message
+          : t("genericError"),
+      );
+    } finally {
+      setPending(false);
+    }
+  };
+
+  const continueGame = () => {
+    if (game?.status === "complete") localStorage.removeItem(STORAGE_KEY);
+    setGuess(undefined);
+    setShowResult(false);
+  };
+
+  const result = showResult ? game?.completedRounds.at(-1) : undefined;
+  const round = game?.currentRound;
 
   return (
     <div className="app-shell">
       <header className="topbar">
-        <a className="brand" href="#top" aria-label={APP_NAME}>
+        <button
+          className="brand brand-button"
+          onClick={() => setGame(undefined)}
+        >
           <span className="brand-mark" aria-hidden="true">
             G
           </span>
           <span>{APP_NAME}</span>
-        </a>
+        </button>
         <div className="toolbar">
+          {game && (
+            <span className="score-pill">
+              {game.totalScore.toLocaleString()} pkt
+            </span>
+          )}
           <button
             className="icon-button"
-            type="button"
-            onClick={toggleLanguage}
+            onClick={() =>
+              void i18n.changeLanguage(
+                i18n.language.startsWith("pl") ? "en" : "pl",
+              )
+            }
           >
             {t("language")}
           </button>
           <button
             className="icon-button"
-            type="button"
             aria-label={t("theme")}
             onClick={() =>
-              setTheme((current) => (current === "light" ? "dark" : "light"))
+              setTheme((value) => (value === "light" ? "dark" : "light"))
             }
           >
-            <span aria-hidden="true">{theme === "light" ? "◐" : "◑"}</span>
+            {theme === "light" ? "◐" : "◑"}
           </button>
         </div>
       </header>
 
-      <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">{t("eyebrow")}</p>
-            <h1 id="hero-title">{t("title")}</h1>
-            <p className="hero-description">{t("description")}</p>
-          </div>
-
-          <aside className="status-card" aria-live="polite">
-            <div className="status-orbit" aria-hidden="true">
-              <span className="orbit-dot" />
-              <span className="orbit-center">M0</span>
-            </div>
-            <div>
-              <p className="card-kicker">{t("statusTitle")}</p>
-              <p>{t("statusDescription")}</p>
-              <div className={`api-status api-status--${apiState}`}>
-                <span className="status-dot" aria-hidden="true" />
-                {t(`api${apiState[0]?.toUpperCase()}${apiState.slice(1)}`)}
-                {environment ? ` · ${environment}` : ""}
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <section className="section" aria-labelledby="flow-title">
-          <div className="section-heading">
-            <span>ARCHITECTURE</span>
-            <h2 id="flow-title">{t("flowTitle")}</h2>
-          </div>
-          <div className="flow-grid">
-            {architecture.map((item, index) => (
-              <article className="flow-card" key={item}>
-                <div className="flow-icon" aria-hidden="true">
-                  {index === 0 ? "⌁" : index === 1 ? "↯" : "◫"}
-                </div>
-                <h3>{t(`${item}Title`)}</h3>
-                <p>{t(`${item}Text`)}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className="section modes-section"
-          aria-labelledby="modes-title"
-        >
-          <div className="section-heading">
-            <span>GAME MODES</span>
-            <h2 id="modes-title">{t("modesTitle")}</h2>
-          </div>
-          <div className="modes-grid">
-            {modes.map((mode, index) => (
-              <article className={`mode-card mode-card--${mode}`} key={mode}>
-                <span className="mode-number">0{index + 1}</span>
-                <div>
-                  <h3>{t(mode)}</h3>
-                  <p>{t(`${mode}Text`)}</p>
-                </div>
-                <span className="mode-arrow" aria-hidden="true">
-                  ↗
+      {!game ? (
+        <main className="start-screen">
+          <section className="start-copy">
+            <p className="eyebrow">M1 · {t("satellite")}</p>
+            <h1>{t("playTitle")}</h1>
+            <p className="hero-description">{t("playDescription")}</p>
+          </section>
+          <form
+            className="start-card"
+            onSubmit={(event) => void startGame(event)}
+          >
+            <label htmlFor="nickname">{t("nicknameLabel")}</label>
+            <input
+              id="nickname"
+              maxLength={20}
+              minLength={2}
+              value={nickname}
+              onChange={(event) => setNickname(event.target.value)}
+              placeholder={t("nicknamePlaceholder")}
+              required
+            />
+            {error && (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            )}
+            <button className="primary-button" disabled={pending}>
+              {pending ? t("loading") : t("startGame")}
+            </button>
+            <small>{t("fiveRounds")}</small>
+          </form>
+        </main>
+      ) : game.status === "complete" && !showResult ? (
+        <main className="summary-screen">
+          <p className="eyebrow">{t("gameComplete")}</p>
+          <h1>{game.totalScore.toLocaleString()} / 25 000</h1>
+          <div className="summary-list">
+            {game.completedRounds.map((item) => (
+              <div key={item.roundNumber}>
+                <span>
+                  {t("round")} {item.roundNumber}
                 </span>
-              </article>
+                <strong>{item.points.toLocaleString()} pkt</strong>
+              </div>
             ))}
           </div>
-        </section>
-      </main>
-
-      <footer>
-        <span>{t("footer")}</span>
-        <span className="footer-docs">{t("docs")}</span>
-      </footer>
+          <button
+            className="primary-button"
+            onClick={() => {
+              setGame(undefined);
+              setNickname("");
+            }}
+          >
+            {t("playAgain")}
+          </button>
+        </main>
+      ) : (
+        <main className="game-screen">
+          <section className="clue-panel">
+            <div className="round-heading">
+              <span>
+                {t("round")} {result?.roundNumber ?? round?.roundNumber} / 5
+              </span>
+              <strong>{game.nickname}</strong>
+            </div>
+            <img
+              className="clue-image"
+              src={result?.clueUrl ?? round?.clueUrl}
+              alt={t("satelliteAlt")}
+            />
+            <small>
+              {round?.attribution ??
+                "Contains modified Copernicus Sentinel data"}
+            </small>
+          </section>
+          <section className="map-panel">
+            <GuessMap
+              selected={guess}
+              onSelect={selectGuess}
+              disabled={showResult}
+              result={result}
+            />
+            {result ? (
+              <div className="result-bar">
+                <div>
+                  <strong>{result.points.toLocaleString()} pkt</strong>
+                  <span>{result.distanceKm.toFixed(1)} km</span>
+                </div>
+                <button className="primary-button" onClick={continueGame}>
+                  {game.status === "complete" ? t("summary") : t("nextRound")}
+                </button>
+              </div>
+            ) : (
+              <button
+                className="primary-button guess-button"
+                disabled={!guess || pending}
+                onClick={() => void submitGuess()}
+              >
+                {pending ? t("loading") : t("confirmGuess")}
+              </button>
+            )}
+            {error && (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            )}
+          </section>
+        </main>
+      )}
     </div>
   );
 }
