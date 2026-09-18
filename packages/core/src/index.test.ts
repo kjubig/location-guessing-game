@@ -9,6 +9,7 @@ import {
   MILESTONES,
   nicknameSchema,
   REPOSITORY_NAME,
+  scoreScaleKm,
 } from "./index";
 
 describe("project identity", () => {
@@ -39,6 +40,9 @@ describe("nickname validation", () => {
     expect(
       createGameRequestSchema.parse({ nickname: "Kjubig", mode: "satellite" }),
     ).toEqual({ nickname: "Kjubig", mode: "satellite" });
+    expect(
+      createGameRequestSchema.parse({ nickname: "Kjubig", mode: "metro" }),
+    ).toEqual({ nickname: "Kjubig", mode: "metro" });
   });
 });
 
@@ -61,5 +65,11 @@ describe("satellite scoring", () => {
   it("rejects invalid scoring input", () => {
     expect(() => calculateRoundPoints(-1)).toThrow(RangeError);
     expect(() => calculateRoundPoints(1, 0)).toThrow(RangeError);
+  });
+
+  it("uses a tighter distance scale for metro rounds", () => {
+    expect(scoreScaleKm("satellite")).toBe(50);
+    expect(scoreScaleKm("metro")).toBe(8);
+    expect(calculateRoundPoints(8, scoreScaleKm("metro"))).toBe(1_839);
   });
 });

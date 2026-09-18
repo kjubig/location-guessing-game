@@ -49,6 +49,7 @@ class MemoryGameRepository implements GameRepository {
       completedRounds: [
         {
           answer: { latitude: 37.54, longitude: 126.95 },
+          attribution: game.currentRound.attribution,
           clueUrl: game.currentRound.clueUrl,
           distanceKm: 12.3,
           guess,
@@ -109,6 +110,22 @@ describe("worker API", () => {
     expect(body.nickname).toBe("민수");
     expect(body.currentRound?.clueUrl).toBe("/clues/opaque.png");
     expect(JSON.stringify(body.currentRound)).not.toContain("answer");
+  });
+
+  it("accepts the metro mode in the shared create-game contract", async () => {
+    const response = await testApp().request(
+      "http://localhost/api/games",
+      {
+        body: JSON.stringify({ nickname: "Metro Player", mode: "metro" }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      },
+      testEnvironment,
+    );
+    const body = await response.json<GameSnapshot>();
+
+    expect(response.status).toBe(201);
+    expect(body.mode).toBe("metro");
   });
 
   it("rejects an invalid nickname before touching storage", async () => {

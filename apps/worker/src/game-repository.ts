@@ -6,6 +6,7 @@ import {
   type GameSnapshot,
   haversineDistanceKm,
   normalizeNickname,
+  scoreScaleKm,
 } from "@golukituki/core";
 
 interface AssetRow {
@@ -78,6 +79,7 @@ function toSnapshot(game: GameRow, rounds: RoundRow[]): GameSnapshot {
         latitude: round.answer_latitude,
         longitude: round.answer_longitude,
       },
+      attribution: round.attribution,
       clueUrl: round.clue_path,
       distanceKm: Math.round(round.distance_km! * 10) / 10,
       guess: {
@@ -209,7 +211,7 @@ export class D1GameRepository implements GameRepository {
       longitude: round.answer_longitude,
     };
     const distanceKm = haversineDistanceKm(guess, answer);
-    const points = calculateRoundPoints(distanceKm);
+    const points = calculateRoundPoints(distanceKm, scoreScaleKm(round.mode));
     const guessedAt = new Date().toISOString();
     const updateResult = await this.database
       .prepare(

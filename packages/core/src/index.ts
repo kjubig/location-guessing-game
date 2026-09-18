@@ -5,9 +5,14 @@ export * from "./identity";
 export const GAME_ROUND_COUNT = 5;
 export const MAX_ROUND_POINTS = 5_000;
 export const SATELLITE_SCORE_SCALE_KM = 50;
+export const METRO_SCORE_SCALE_KM = 8;
 
-export const gameModeSchema = z.enum(["satellite"]);
+export const gameModeSchema = z.enum(["satellite", "metro"]);
 export type GameMode = z.infer<typeof gameModeSchema>;
+
+export function scoreScaleKm(mode: GameMode): number {
+  return mode === "metro" ? METRO_SCORE_SCALE_KM : SATELLITE_SCORE_SCALE_KM;
+}
 
 export const coordinateSchema = z.object({
   latitude: z.number().finite().min(-90).max(90),
@@ -57,6 +62,7 @@ export interface RoundClue {
 
 export interface RoundResult {
   answer: Coordinate;
+  attribution: string;
   clueUrl: string;
   distanceKm: number;
   guess: Coordinate;

@@ -24,6 +24,10 @@ vi.mock("./GuessMap", () => ({
   ),
 }));
 
+vi.mock("./MetroClue", () => ({
+  MetroClue: ({ url }: { url: string }) => <div>Test metro clue: {url}</div>,
+}));
+
 const firstRound: GameSnapshot = {
   completedRounds: [],
   currentRound: {
@@ -45,6 +49,7 @@ const afterGuess: GameSnapshot = {
   completedRounds: [
     {
       answer: { latitude: 37.54, longitude: 126.95 },
+      attribution: "Contains modified Copernicus Sentinel data (2025)",
       clueUrl: "/clues/opaque.png",
       distanceKm: 12.3,
       guess: { latitude: 37.5, longitude: 127 },
@@ -59,6 +64,16 @@ const afterGuess: GameSnapshot = {
     roundNumber: 2,
   },
   totalScore: 3_910,
+};
+
+const metroRound: GameSnapshot = {
+  ...firstRound,
+  currentRound: {
+    ...firstRound.currentRound!,
+    attribution: "© OpenStreetMap contributors (ODbL)",
+    clueUrl: "/clues/metro/opaque.json",
+  },
+  mode: "metro",
 };
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -127,5 +142,23 @@ describe("satellite game flow", () => {
     expect(screen.getByText("Tester")).toBeTruthy();
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock.mock.calls[0]?.[0]).toBe("/api/games/game-1");
+  });
+
+  it("starts the selected metro mode and renders its anonymous clue", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(metroRound, 201));
+    vi.stubGlobal("fetch", fetchMock);
+    const user = userEvent.setup();
+
+    render(<App />);
+    await user.click(screen.getByRole("button", { name: /Metro/ }));
+    await user.type(screen.getByLabelText("Twój nick"), "Tester");
+    await user.click(screen.getByRole("button", { name: "Rozpocznij grę" }));
+
+    expect(await screen.findByText(/Test metro clue/)).toBeTruthy();
+    const request = fetchMock.mock.calls[0]?.[1] as RequestInit;
+    expect(JSON.parse(request.body as string)).toEqual({
+      nickname: "Tester",
+      mode: "metro",
+    });
   });
 });

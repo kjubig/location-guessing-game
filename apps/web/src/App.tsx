@@ -1,6 +1,7 @@
 import type {
   ApiErrorResponse,
   Coordinate,
+  GameMode,
   GameSnapshot,
 } from "@golukituki/core";
 import { APP_NAME } from "@golukituki/core/identity";
@@ -13,6 +14,8 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
+
+import { MetroClue } from "./MetroClue";
 
 const GuessMap = lazy(() =>
   import("./GuessMap").then((module) => ({ default: module.GuessMap })),
@@ -48,6 +51,7 @@ export function App() {
   const { i18n, t } = useTranslation();
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const [nickname, setNickname] = useState("");
+  const [selectedMode, setSelectedMode] = useState<GameMode>("satellite");
   const [game, setGame] = useState<GameSnapshot>();
   const [guess, setGuess] = useState<Coordinate>();
   const [showResult, setShowResult] = useState(false);
@@ -76,7 +80,7 @@ export function App() {
     setError(undefined);
     try {
       const snapshot = await apiRequest<GameSnapshot>("/api/games", {
-        body: JSON.stringify({ nickname, mode: "satellite" }),
+        body: JSON.stringify({ nickname, mode: selectedMode }),
         method: "POST",
       });
       localStorage.setItem(STORAGE_KEY, snapshot.gameId);
@@ -123,6 +127,8 @@ export function App() {
 
   const result = showResult ? game?.completedRounds.at(-1) : undefined;
   const round = game?.currentRound;
+  const clueUrl = result?.clueUrl ?? round?.clueUrl;
+  const attribution = result?.attribution ?? round?.attribution;
 
   return (
     <div className="app-shell">
@@ -167,14 +173,39 @@ export function App() {
       {!game ? (
         <main className="start-screen">
           <section className="start-copy">
-            <p className="eyebrow">M1 · {t("satellite")}</p>
-            <h1>{t("playTitle")}</h1>
-            <p className="hero-description">{t("playDescription")}</p>
+            <p className="eyebrow">
+              {selectedMode === "metro" ? "M2" : "M1"} · {t(selectedMode)}
+            </p>
+            <h1>
+              {t(selectedMode === "metro" ? "playTitleMetro" : "playTitle")}
+            </h1>
+            <p className="hero-description">
+              {t(
+                selectedMode === "metro"
+                  ? "playDescriptionMetro"
+                  : "playDescription",
+              )}
+            </p>
           </section>
           <form
             className="start-card"
             onSubmit={(event) => void startGame(event)}
           >
+            <fieldset className="mode-picker">
+              <legend>{t("chooseMode")}</legend>
+              {(["satellite", "metro"] as const).map((mode) => (
+                <button
+                  aria-pressed={selectedMode === mode}
+                  className="mode-picker__button"
+                  key={mode}
+                  onClick={() => setSelectedMode(mode)}
+                  type="button"
+                >
+                  <strong>{t(mode)}</strong>
+                  <span>{t(`${mode}Short`)}</span>
+                </button>
+              ))}
+            </fieldset>
             <label htmlFor="nickname">{t("nicknameLabel")}</label>
             <input
               id="nickname"
@@ -230,15 +261,21 @@ export function App() {
               </span>
               <strong>{game.nickname}</strong>
             </div>
-            <img
-              className="clue-image"
-              src={result?.clueUrl ?? round?.clueUrl}
-              alt={t("satelliteAlt")}
-            />
-            <small>
-              {round?.attribution ??
-                "Contains modified Copernicus Sentinel data"}
-            </small>
+            {game.mode === "metro" && clueUrl ? (
+              <MetroClue
+                errorLabel={t("metroClueError")}
+                label={t("metroAlt")}
+                loadingLabel={t("metroClueLoading")}
+                url={clueUrl}
+              />
+            ) : (
+              <img
+                className="clue-image"
+                src={clueUrl}
+                alt={t("satelliteAlt")}
+              />
+            )}
+            <small>{attribution}</small>
           </section>
           <section className="map-panel">
             <Suspense

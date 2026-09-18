@@ -140,6 +140,39 @@ a:focus-visible {
   color: var(--ink);
   font: inherit;
 }
+.mode-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 0;
+  border: 0;
+}
+.mode-picker legend {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+.mode-picker__button {
+  min-width: 0;
+  padding: 14px;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+.mode-picker__button[aria-pressed="true"] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+.mode-picker__button span {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
 .start-card small,
 .clue-panel small {
   color: var(--muted);
@@ -195,6 +228,42 @@ a:focus-visible {
   border-radius: 18px;
   margin-bottom: 12px;
   background: #17221d;
+}
+.metro-clue {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #eef0e8;
+}
+.metro-clue svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.metro-clue__background {
+  fill: #eef0e8;
+}
+.metro-clue__lines polyline {
+  fill: none;
+  stroke: #53605a;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 10;
+}
+.metro-clue__stations circle {
+  fill: #eef0e8;
+  stroke: #27352f;
+  stroke-width: 5;
+}
+.metro-clue--status {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #27352f;
+  font-weight: 800;
+  text-align: center;
 }
 .map-panel {
   position: relative;
@@ -637,6 +706,9 @@ footer .footer-docs {
   .start-screen {
     min-height: auto;
     padding: 44px 0;
+  }
+  .mode-picker {
+    grid-template-columns: 1fr;
   }
   .game-screen {
     padding: 16px 0;
