@@ -8,11 +8,14 @@ import type {
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useEffect, useRef } from "react";
 
-import type { Coordinate, RoundResult } from "@golukituki/core";
+import type { Coordinate, GameMode, RoundResult } from "@golukituki/core";
+
+import { createGuessMapStyle } from "./guessMapStyle";
 
 interface GuessMapProps {
   disabled?: boolean;
   label?: string;
+  mode: GameMode;
   onSelect?: (coordinate: Coordinate) => void;
   result?: RoundResult;
   selected?: Coordinate;
@@ -21,6 +24,7 @@ interface GuessMapProps {
 export function GuessMap({
   disabled,
   label = "Mapa zgadywania",
+  mode,
   onSelect,
   result,
   selected,
@@ -44,40 +48,14 @@ export function GuessMap({
       zoom: 5.4,
       minZoom: 5,
       maxZoom: 12,
-      style: {
-        version: 8,
-        sources: {
-          korea: { type: "geojson", data: "/map/south-korea.geojson" },
-        },
-        layers: [
-          {
-            id: "background",
-            type: "background",
-            paint: { "background-color": "#dce8df" },
-          },
-          {
-            id: "korea-fill",
-            type: "fill",
-            source: "korea",
-            paint: { "fill-color": "#f5f1e7", "fill-opacity": 1 },
-          },
-          {
-            id: "korea-outline",
-            type: "line",
-            source: "korea",
-            paint: { "line-color": "#1f573f", "line-width": 1.5 },
-          },
-        ],
-      },
+      style: createGuessMapStyle(mode),
       attributionControl: false,
     });
     map.addControl(
       new maplibregl.NavigationControl({ showCompass: false }),
       "top-right",
     );
-    map.addControl(
-      new maplibregl.AttributionControl({ customAttribution: "Natural Earth" }),
-    );
+    map.addControl(new maplibregl.AttributionControl({ compact: false }));
     map.on("click", (event: MapMouseEvent) => {
       if (!disabledRef.current) {
         onSelectRef.current?.({
@@ -91,7 +69,7 @@ export function GuessMap({
       map.remove();
       mapRef.current = null;
     };
-  }, []);
+  }, [mode]);
 
   useEffect(() => {
     const map = mapRef.current;

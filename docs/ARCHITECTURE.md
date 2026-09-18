@@ -100,8 +100,9 @@ plików lub kontrolowanego seeda D1.
 
 W M1 pipeline przygotował uproszczoną mapę Natural Earth i kadry Sentinel-2. W
 M2 pobiera OSM, zapisuje prywatny cache i tworzy anonimowe fragmenty metra.
-Szczegółowe kafelki mapy są następnym krokiem M2. W M4 pipeline przygotuje pełną
-pulę obrazów Sentinel-2.
+Mapa zgadywania w trybie metra nakłada zewnętrzne kafelki rastrowe EOxCloudless;
+tryb satelitarny celowo pozostaje przy pustym obrysie kraju. W M4 pipeline
+przygotuje pełną pulę obrazów Sentinel-2.
 
 ## Gdzie szukać kodu
 

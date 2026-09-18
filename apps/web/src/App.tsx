@@ -282,6 +282,7 @@ export function App() {
               fallback={<div className="map-loading">{t("mapLoading")}</div>}
             >
               <GuessMap
+                mode={game.mode}
                 selected={guess}
                 onSelect={selectGuess}
                 disabled={showResult}

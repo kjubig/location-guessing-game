@@ -143,8 +143,10 @@ must operate within free service tiers.
    - remove all identifying tags and source coordinates;
    - assign opaque asset identifiers;
    - validate geometry and minimum clue complexity.
-5. Generate a filtered OSM-derived map as small vector tiles through zoom 12,
-   with a target around 5,000 files and hard checks for Cloudflare's asset limits.
+5. Add useful geographic context to the metro guessing map without exposing
+   transit geometry. For the non-commercial test MVP, use the public
+   EOxCloudless Sentinel-2 WMTS with visible attribution; keep satellite-mode
+   guesses on the empty Natural Earth outline.
 6. Implement the Mini Metro-inspired renderer with neutral lines and station
    dots, including responsive scaling and theme variants.
 7. Reuse the M1 server contract, scoring, result, and summary components.

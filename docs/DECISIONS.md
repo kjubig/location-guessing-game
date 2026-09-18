@@ -83,34 +83,34 @@ Planned supporting libraries:
 
 ### 3. Guessing map
 
-**Decision:** MapLibre GL JS with a self-hosted, deliberately minimal map style
-delivered in two levels of detail.
+**Decision:** MapLibre GL JS with a deliberately minimal country outline for
+satellite rounds and satellite terrain context for metro rounds.
 
-M1 will render a coarse Natural Earth map for the South Korean coastline and
-administrative context. Natural Earth data is in the public domain and is small
-enough for the satellite mode's country-scale guesses. M2 will add a filtered
-OSM-derived map cut into ordinary small vector tiles through zoom 12. The tile
-set may include coastline, boundaries, water, selected roads, and optional city
-labels, but no railway/subway layer.
+M1 renders a coarse, self-hosted Natural Earth outline. In satellite mode that
+outline remains intentionally empty: adding city labels or aerial imagery would
+give hints while the player is identifying a satellite crop.
 
-The detailed map is tiled because a single country-wide PMTiles archive may
-exceed Cloudflare's 25 MiB per-file limit. The generated tile count must stay
-below the 20,000 static-asset limit; the initial budget is approximately 5,000
-tiles and will be enforced by the pipeline.
+In metro mode M2 uses the public EOxCloudless 2025 WMTS as a raster layer. It
+shows terrain and urban extent without place labels or rail/transit features.
+This is materially more useful for a small friends-and-family test than building
+and hosting roughly 5,000 OSM vector tiles, and it needs no API key. The source
+is loaded only in metro games and carries its required attribution in the
+MapLibre source definition.
 
-This removes tile-provider quotas and keys, prevents transit infrastructure from
-leaking through a third-party basemap, and makes the game reproducible offline.
-MapLibre is preferred over Leaflet because it provides consistent vector styling
-and GPU rendering for the map and result line.
+The current EOxCloudless layer is licensed for non-commercial use under CC
+BY-NC-SA 4.0. Before any commercial release it must be replaced by self-hosted
+imagery, an appropriately licensed provider, or a commercial EOX license. The
+external service is also an availability dependency; if it fails, the map falls
+back to a dark background and the game API continues to work.
 
-The map needs a visible OpenStreetMap attribution wherever OSM-derived map data
-is displayed. OSM-derived datasets are governed by ODbL and are not relicensed
-under the application's MIT license.
+MapLibre remains preferable to Leaflet because it gives consistent WebGL raster
+rendering and result-line styling with the same component.
 
 Sources:
 
 - [MapLibre GL JS documentation](https://maplibre.org/maplibre-gl-js/docs/)
-- [OpenStreetMap copyright, ODbL, and attribution](https://www.openstreetmap.org/copyright)
+- [EOxCloudless license and attribution](https://cloudless.eox.at/documentation/license)
+- [EOX public WMTS/WMS integration guide](https://cloudless.eox.at/documentation/usage)
 
 ### 4. Database and API
 
