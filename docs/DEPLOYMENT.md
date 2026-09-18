@@ -1,7 +1,7 @@
 # Wdrożenie: GitHub, Cloudflare Worker i D1
 
-Status: instrukcja przygotowana i sprawdzona lokalnie; kroki kontowe oczekują na
-wykonanie przez właściciela  
+Status: prywatne repozytorium GitHub połączone; konfiguracja Cloudflare oczekuje
+na wykonanie przez właściciela  
 Ostatnia aktualizacja: 2026-09-18
 
 Ten dokument celowo rozdziela trzy rzeczy, które często są mylone:
@@ -28,6 +28,13 @@ sekretami, ale przed zdalnym wdrożeniem trzeba zastąpić je UUID-ami zwrócony
 przez Cloudflare.
 
 ## 2. Utworzenie prywatnego repozytorium GitHub
+
+Stan projektu: wykonane 2026-09-18. Repozytorium znajduje się pod adresem
+[`kjubig/location-guessing-game`](https://github.com/kjubig/location-guessing-game),
+a lokalna gałąź `main` śledzi `origin/main`.
+
+Poniższa procedura pozostaje udokumentowana, aby wyjaśnić, jak ten etap został
+wykonany i jak odtworzyć go przy kolejnym projekcie.
 
 1. Na GitHubie utwórz prywatne repozytorium `location-guessing-game`.
 2. Nie dodawaj przez formularz README, `.gitignore` ani licencji — te pliki już
