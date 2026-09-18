@@ -4,33 +4,603 @@
   "cities": [
     {
       "id": "seoul",
-      "name": { "en": "Seoul", "ko": "서울" },
-      "referenceLocation": { "latitude": 37.5665, "longitude": 126.978 },
-      "clueAssetIds": []
+      "name": {
+        "en": "Seoul",
+        "ko": "서울"
+      },
+      "referenceLocation": {
+        "latitude": 37.566,
+        "longitude": 126.9784
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1835848"
+      },
+      "clueAssetIds": [
+        "40d6a7b5a41850ca9d6f",
+        "14961aa6795a05d24ef0",
+        "b4c77de898d1a1a42db0"
+      ]
     },
     {
       "id": "busan",
-      "name": { "en": "Busan", "ko": "부산" },
-      "referenceLocation": { "latitude": 35.1796, "longitude": 129.0756 },
-      "clueAssetIds": []
+      "name": {
+        "en": "Busan",
+        "ko": "부산"
+      },
+      "referenceLocation": {
+        "latitude": 35.10168,
+        "longitude": 129.03004
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1838524"
+      },
+      "clueAssetIds": [
+        "ce340c877f070b25bb20",
+        "0a13ce418cd075fb9a67",
+        "c53eb8625b24434a382e"
+      ]
     },
     {
       "id": "incheon",
-      "name": { "en": "Incheon", "ko": "인천" },
-      "referenceLocation": { "latitude": 37.4563, "longitude": 126.7052 },
-      "clueAssetIds": []
+      "name": {
+        "en": "Incheon",
+        "ko": "인천"
+      },
+      "referenceLocation": {
+        "latitude": 37.45646,
+        "longitude": 126.70515
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1843564"
+      },
+      "clueAssetIds": [
+        "c1c5d71654a15c92960b",
+        "a10e6e80e417893f8bdd",
+        "3697ba24ed608b287c73"
+      ]
     },
     {
       "id": "daegu",
-      "name": { "en": "Daegu", "ko": "대구" },
-      "referenceLocation": { "latitude": 35.8714, "longitude": 128.6014 },
-      "clueAssetIds": []
+      "name": {
+        "en": "Daegu",
+        "ko": "대구"
+      },
+      "referenceLocation": {
+        "latitude": 35.87028,
+        "longitude": 128.59111
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1835329"
+      },
+      "clueAssetIds": [
+        "475fc246a2aa02daf46d",
+        "81dcb50befb4310fa697",
+        "1042bc0455a3ace245f9"
+      ]
     },
     {
       "id": "daejeon",
-      "name": { "en": "Daejeon", "ko": "대전" },
-      "referenceLocation": { "latitude": 36.3504, "longitude": 127.3845 },
-      "clueAssetIds": []
+      "name": {
+        "en": "Daejeon",
+        "ko": "대전"
+      },
+      "referenceLocation": {
+        "latitude": 36.34913,
+        "longitude": 127.38493
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1835235"
+      },
+      "clueAssetIds": [
+        "91116883bac89f91395c",
+        "8c36fd568b04aaa5b0d7",
+        "4dbf843a814381d32460"
+      ]
+    },
+    {
+      "id": "gwangju",
+      "name": {
+        "en": "Gwangju",
+        "ko": "광주"
+      },
+      "referenceLocation": {
+        "latitude": 35.15472,
+        "longitude": 126.91556
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1841811"
+      },
+      "clueAssetIds": [
+        "9c19d3bb64bea6534210",
+        "5a31eec6531729583a0e",
+        "cf14d9c57b524822dae8"
+      ]
+    },
+    {
+      "id": "suwon",
+      "name": {
+        "en": "Suwon",
+        "ko": "수원"
+      },
+      "referenceLocation": {
+        "latitude": 37.29111,
+        "longitude": 127.00889
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1835553"
+      },
+      "clueAssetIds": [
+        "8c894406e1091330f470",
+        "6d795aa33a4bc417f203",
+        "44f8f3a03e4492acd171"
+      ]
+    },
+    {
+      "id": "ulsan",
+      "name": {
+        "en": "Ulsan",
+        "ko": "울산"
+      },
+      "referenceLocation": {
+        "latitude": 35.53722,
+        "longitude": 129.31667
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1833747"
+      },
+      "clueAssetIds": [
+        "1e59e7a14794032b216f",
+        "31fe36a0bc4805d37589",
+        "3d12c006776418868726"
+      ]
+    },
+    {
+      "id": "changwon",
+      "name": {
+        "en": "Changwon",
+        "ko": "창원"
+      },
+      "referenceLocation": {
+        "latitude": 35.22806,
+        "longitude": 128.68111
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1846326"
+      },
+      "clueAssetIds": [
+        "cce063f17b6b0daeccbb",
+        "8dee9664824c0bed8072",
+        "46e5bdf41aec0d7efab4"
+      ]
+    },
+    {
+      "id": "cheongju",
+      "name": {
+        "en": "Cheongju",
+        "ko": "청주"
+      },
+      "referenceLocation": {
+        "latitude": 36.63722,
+        "longitude": 127.48972
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1845604"
+      },
+      "clueAssetIds": [
+        "b39e2dab15f71880a178",
+        "e4755fc3d2c5da7c680e",
+        "770b427b4076d0769f01"
+      ]
+    },
+    {
+      "id": "cheonan",
+      "name": {
+        "en": "Cheonan",
+        "ko": "천안"
+      },
+      "referenceLocation": {
+        "latitude": 36.8065,
+        "longitude": 127.1522
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1845759"
+      },
+      "clueAssetIds": [
+        "ea545fb8802cc31102ef",
+        "1afb5b75948c3f9199a5",
+        "bb053aa60ff8cfa00edf"
+      ]
+    },
+    {
+      "id": "jeonju",
+      "name": {
+        "en": "Jeonju",
+        "ko": "전주"
+      },
+      "referenceLocation": {
+        "latitude": 35.82194,
+        "longitude": 127.14889
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1845457"
+      },
+      "clueAssetIds": [
+        "12ebb1a843ee34d415b6",
+        "820a6e965a2dcab46813",
+        "5b02f0c9c6d700eb606e"
+      ]
+    },
+    {
+      "id": "gimhae",
+      "name": {
+        "en": "Gimhae",
+        "ko": "김해"
+      },
+      "referenceLocation": {
+        "latitude": 35.23417,
+        "longitude": 128.88111
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1842943"
+      },
+      "clueAssetIds": [
+        "3a45e12adffd28a54ee9",
+        "4b3cbbca2af561ab11d8",
+        "b530db32c645e5abacb6"
+      ]
+    },
+    {
+      "id": "pohang",
+      "name": {
+        "en": "Pohang",
+        "ko": "포항"
+      },
+      "referenceLocation": {
+        "latitude": 36.02917,
+        "longitude": 129.36481
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1839071"
+      },
+      "clueAssetIds": [
+        "a221870b892a1c2a8733",
+        "bd116bde37e4c36f13de",
+        "da1dca787762acc803f0"
+      ]
+    },
+    {
+      "id": "jeju",
+      "name": {
+        "en": "Jeju City",
+        "ko": "제주"
+      },
+      "referenceLocation": {
+        "latitude": 33.50972,
+        "longitude": 126.52194
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1846266"
+      },
+      "clueAssetIds": [
+        "d1ce48f331d5f0dcbf8a",
+        "7b57cd6ec82ea39dd11c",
+        "8ba6c00c6671d03c09b4"
+      ]
+    },
+    {
+      "id": "gumi",
+      "name": {
+        "en": "Gumi",
+        "ko": "구미"
+      },
+      "referenceLocation": {
+        "latitude": 36.1136,
+        "longitude": 128.336
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1842225"
+      },
+      "clueAssetIds": [
+        "0255aebc5afad739303d",
+        "edaf5d0b926b520b310f",
+        "4c677eb16dba73c6404c"
+      ]
+    },
+    {
+      "id": "sejong",
+      "name": {
+        "en": "Sejong",
+        "ko": "세종"
+      },
+      "referenceLocation": {
+        "latitude": 36.59245,
+        "longitude": 127.29223
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "11523293"
+      },
+      "clueAssetIds": [
+        "f235018525eed5bd3fce",
+        "840c24f7fb0983ff7b7e",
+        "1da0af39e1ec4d81dc14"
+      ]
+    },
+    {
+      "id": "pyeongtaek",
+      "name": {
+        "en": "Pyeongtaek",
+        "ko": "평택"
+      },
+      "referenceLocation": {
+        "latitude": 36.99472,
+        "longitude": 127.08889
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1838343"
+      },
+      "clueAssetIds": [
+        "f1d06b23177e8c94906c",
+        "b70c07a1e7ef9c875cba",
+        "ba8573d7d8480e820846"
+      ]
+    },
+    {
+      "id": "yangsan",
+      "name": {
+        "en": "Yangsan",
+        "ko": "양산"
+      },
+      "referenceLocation": {
+        "latitude": 35.34199,
+        "longitude": 129.03358
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1832828"
+      },
+      "clueAssetIds": [
+        "71a4e84ceb42668f6ad6",
+        "8f697dbed0ffc66ef95a",
+        "42c01dba26512be94d8e"
+      ]
+    },
+    {
+      "id": "wonju",
+      "name": {
+        "en": "Wonju",
+        "ko": "원주"
+      },
+      "referenceLocation": {
+        "latitude": 37.35139,
+        "longitude": 127.94528
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1833105"
+      },
+      "clueAssetIds": [
+        "a41a36116bfec8408508",
+        "c7f01d8d902545cd377c",
+        "09ebfecd02da7af68606"
+      ]
+    },
+    {
+      "id": "jinju",
+      "name": {
+        "en": "Jinju",
+        "ko": "진주"
+      },
+      "referenceLocation": {
+        "latitude": 35.19278,
+        "longitude": 128.08472
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1846052"
+      },
+      "clueAssetIds": [
+        "652977a60e842122eb6a",
+        "72660842f98977026288",
+        "cf9d0286ccc1675980fa"
+      ]
+    },
+    {
+      "id": "iksan",
+      "name": {
+        "en": "Iksan",
+        "ko": "익산"
+      },
+      "referenceLocation": {
+        "latitude": 35.94389,
+        "longitude": 126.95444
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1843491"
+      },
+      "clueAssetIds": [
+        "4a7e407a1fa0b254340d",
+        "d46a59c9cef2708eba35",
+        "dfb1849a89fef813e79f"
+      ]
+    },
+    {
+      "id": "chuncheon",
+      "name": {
+        "en": "Chuncheon",
+        "ko": "춘천"
+      },
+      "referenceLocation": {
+        "latitude": 37.87472,
+        "longitude": 127.73417
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1845136"
+      },
+      "clueAssetIds": [
+        "3e8cbda783a4b29c127b",
+        "25f7551fbf60540f0374",
+        "a2fe0dbcfe3878255498"
+      ]
+    },
+    {
+      "id": "suncheon",
+      "name": {
+        "en": "Suncheon",
+        "ko": "순천"
+      },
+      "referenceLocation": {
+        "latitude": 34.9505,
+        "longitude": 127.48784
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1835648"
+      },
+      "clueAssetIds": [
+        "d288b36ff5a1e3626381",
+        "9e1e672969e0c15d93f2",
+        "08ea58eea384a8689ccf"
+      ]
+    },
+    {
+      "id": "yeosu",
+      "name": {
+        "en": "Yeosu",
+        "ko": "여수"
+      },
+      "referenceLocation": {
+        "latitude": 34.76062,
+        "longitude": 127.66215
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1884138"
+      },
+      "clueAssetIds": [
+        "8724faebe066129b7097",
+        "be9241246c74a5912472",
+        "50b628fc4040c15c4668"
+      ]
+    },
+    {
+      "id": "mokpo",
+      "name": {
+        "en": "Mokpo",
+        "ko": "목포"
+      },
+      "referenceLocation": {
+        "latitude": 34.81282,
+        "longitude": 126.39181
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1841066"
+      },
+      "clueAssetIds": [
+        "7aec4960950ad1cd2adf",
+        "b3dda0ba8f4eb44652ad",
+        "820a08100a84ff655601"
+      ]
+    },
+    {
+      "id": "gunsan",
+      "name": {
+        "en": "Gunsan",
+        "ko": "군산"
+      },
+      "referenceLocation": {
+        "latitude": 35.97861,
+        "longitude": 126.71139
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1842025"
+      },
+      "clueAssetIds": [
+        "aecee36e1e717911707e",
+        "563f8fbb0b3842e42df3",
+        "55447b01a2d7bca17438"
+      ]
+    },
+    {
+      "id": "gyeongju",
+      "name": {
+        "en": "Gyeongju",
+        "ko": "경주"
+      },
+      "referenceLocation": {
+        "latitude": 35.84278,
+        "longitude": 129.21167
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1841603"
+      },
+      "clueAssetIds": [
+        "0537fc6bd27f1d123eb7",
+        "600f0a6ad18d65b7dea9",
+        "0ab08883a66ad1d8132d"
+      ]
+    },
+    {
+      "id": "geoje",
+      "name": {
+        "en": "Geoje",
+        "ko": "거제"
+      },
+      "referenceLocation": {
+        "latitude": 34.81379,
+        "longitude": 128.70556
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "11101805"
+      },
+      "clueAssetIds": [
+        "22a7a5b8799cdaa3c251",
+        "40706b1ceef8813b3a51",
+        "5f08028bfe840df1019c"
+      ]
+    },
+    {
+      "id": "gangneung",
+      "name": {
+        "en": "Gangneung",
+        "ko": "강릉"
+      },
+      "referenceLocation": {
+        "latitude": 37.75266,
+        "longitude": 128.87239
+      },
+      "source": {
+        "provider": "GeoNames",
+        "recordId": "1843137"
+      },
+      "clueAssetIds": [
+        "3800e3ae1236526c431e",
+        "ff06c9a90739d0dc12ba",
+        "8431613d9b3bf6a40490"
+      ]
     }
   ]
 }

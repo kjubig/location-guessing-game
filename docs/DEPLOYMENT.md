@@ -173,7 +173,23 @@ ujawniania szczegółów. Frontend pokazuje komunikat i zachowuje formularz do
 ponowienia. Po przekroczeniu dziennego limitu nie próbujemy zapisywać wyniku
 lokalnie w przeglądarce — po resecie limitu źródłem prawdy nadal jest D1.
 
-## 8. Codzienny przepływ zmian
+## 8. Eksport i retencja D1
+
+Przed ryzykowną migracją produkcji wykonaj eksport do katalogu poza
+repozytorium:
+
+```powershell
+pnpm --filter @golukituki/worker exec wrangler d1 export golukituki-production `
+  --remote --env production --output C:\secure-backups\golukituki.sql
+```
+
+Plik zawiera nicki, strzały i wyniki. Nie commituj go ani nie przesyłaj do
+publicznego miejsca. W MVP ukończone gry i najlepsze wyniki pozostają w bazie,
+żeby ranking był trwały; wygasłe aktywne gry są usuwane małymi porcjami podczas
+tworzenia kolejnych gier. Zmiana retencji wymaga osobnej migracji lub zadania
+sprzątającego i aktualizacji informacji dla graczy.
+
+## 9. Codzienny przepływ zmian
 
 1. Utwórz gałąź roboczą.
 2. Zmień kod i uruchom `pnpm validate` oraz `pnpm pipeline:test`.
@@ -186,14 +202,14 @@ migruj bazę preview, przetestuj aplikację, a produkcję migruj bezpośrednio p
 wdrożeniem kompatybilnego kodu. Migracje powinny być wstecznie kompatybilne, np.
 najpierw dodawać kolumnę, a dopiero w późniejszym wydaniu usuwać starą.
 
-## 9. Cofnięcie wadliwej wersji
+## 10. Cofnięcie wadliwej wersji
 
 Najprostszy bezpieczny rollback kodu to odwrócenie wadliwego commita nowym
 commitem (`git revert <sha>`) i wypchnięcie go do `main`. Zachowuje to historię i
 uruchamia zwykłe CI/CD. Nie cofaj automatycznie migracji D1: najpierw oceń dane i
 przygotuj nową migrację naprawczą.
 
-## 10. Gdzie szukać problemu
+## 11. Gdzie szukać problemu
 
 - **CI czerwone, Cloudflare jeszcze nie ruszył:** błąd jest w formatowaniu,
   lintowaniu, typach, testach albo buildzie.

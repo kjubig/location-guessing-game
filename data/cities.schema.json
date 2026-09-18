@@ -18,7 +18,7 @@
     "city": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "referenceLocation", "clueAssetIds"],
+      "required": ["id", "name", "referenceLocation", "source", "clueAssetIds"],
       "properties": {
         "id": {
           "type": "string",
@@ -34,6 +34,15 @@
           }
         },
         "referenceLocation": { "$ref": "#/$defs/coordinate" },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider", "recordId"],
+          "properties": {
+            "provider": { "const": "GeoNames" },
+            "recordId": { "type": "string", "pattern": "^[0-9]+$" }
+          }
+        },
         "clueAssetIds": {
           "type": "array",
           "items": {

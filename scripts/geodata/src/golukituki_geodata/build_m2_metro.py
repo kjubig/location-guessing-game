@@ -20,6 +20,7 @@ from typing import Any
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[4]
 CITIES_PATH = REPOSITORY_ROOT / "data" / "cities.json"
+METRO_CITY_IDS = {"seoul", "busan", "incheon", "daegu", "daejeon"}
 RAW_DIRECTORY = REPOSITORY_ROOT / "data" / "raw" / "m2-metro"
 MANIFEST_PATH = REPOSITORY_ROOT / "data" / "source" / "m2-metro-fixtures.json"
 CLUE_DIRECTORY = REPOSITORY_ROOT / "apps" / "web" / "public" / "clues" / "metro"
@@ -51,6 +52,7 @@ def read_cities() -> list[City]:
             longitude=city["referenceLocation"]["longitude"],
         )
         for city in catalog["cities"]
+        if city["id"] in METRO_CITY_IDS
     ]
 
 

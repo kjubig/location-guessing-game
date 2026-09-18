@@ -34,6 +34,7 @@ const resources = {
       footer: "M0 · architektura i pierwszy działający szkielet",
       language: "EN",
       theme: "Zmień motyw",
+      languageLabel: "Switch language to English",
       playTitle: "Rozpoznasz Koreę z góry?",
       playDescription:
         "Pięć prawdziwych kadrów satelitarnych. Wskaż na mapie miejsce, które widzisz, i zdobądź do 5000 punktów za rundę.",
@@ -51,6 +52,7 @@ const resources = {
       genericError: "Coś poszło nie tak",
       round: "Runda",
       satelliteAlt: "Satelitarny obraz miejsca do odgadnięcia",
+      satelliteClueError: "Nie udało się załadować obrazu satelitarnego",
       metroAlt: "Anonimowy fragment sieci metra do odgadnięcia",
       metroClueLoading: "Ładuję układ metra…",
       metroClueError: "Nie udało się załadować układu metra",
@@ -66,6 +68,19 @@ const resources = {
       leaderboardEmpty: "Ranking czeka na pierwszy ukończony wynik.",
       turnstileLoading: "Ładuję weryfikację…",
       turnstileError: "Nie udało się uruchomić weryfikacji. Odśwież stronę.",
+      sources: "Źródła i licencje",
+      sourcesEyebrow: "Transparentność danych",
+      sourcesTitle: "Źródła i licencje",
+      sourcesIntro:
+        "Gra łączy kod aplikacji z otwartymi danymi i obrazami objętymi własnymi warunkami. Poniżej znajdziesz ich autorów i zasady ponownego użycia.",
+      sourceTerms: "Zobacz źródło i warunki",
+      applicationLicenseTitle: "Kod aplikacji",
+      applicationLicenseText:
+        "Kod GEOLUKITUKI jest udostępniany na licencji MIT. Ta licencja nie obejmuje obrazów, danych mapowych ani wygenerowanych z nich materiałów wymienionych powyżej.",
+      backToGame: "Wróć do gry",
+      expandMap: "Powiększ mapę",
+      collapseMap: "Zmniejsz mapę",
+      selectMapCenter: "Wybierz środek mapy",
     },
   },
   en: {
@@ -101,6 +116,7 @@ const resources = {
       footer: "M0 · architecture and the first working foundation",
       language: "PL",
       theme: "Change theme",
+      languageLabel: "Zmień język na polski",
       playTitle: "Can you recognize Korea from above?",
       playDescription:
         "Five real satellite views. Point to the place on the map and earn up to 5000 points per round.",
@@ -118,6 +134,7 @@ const resources = {
       genericError: "Something went wrong",
       round: "Round",
       satelliteAlt: "Satellite view of a place to identify",
+      satelliteClueError: "The satellite image could not be loaded",
       metroAlt: "Anonymous metro network excerpt to identify",
       metroClueLoading: "Loading metro layout…",
       metroClueError: "The metro layout could not be loaded",
@@ -133,6 +150,19 @@ const resources = {
       leaderboardEmpty: "The leaderboard is waiting for its first result.",
       turnstileLoading: "Loading verification…",
       turnstileError: "Verification could not start. Refresh the page.",
+      sources: "Sources and licenses",
+      sourcesEyebrow: "Data transparency",
+      sourcesTitle: "Sources and licenses",
+      sourcesIntro:
+        "The game combines application code with open data and imagery governed by their own terms. Their authors and reuse conditions are listed below.",
+      sourceTerms: "View source and terms",
+      applicationLicenseTitle: "Application code",
+      applicationLicenseText:
+        "GEOLUKITUKI code is released under the MIT License. That license does not cover imagery, map data, or derived assets listed above.",
+      backToGame: "Back to the game",
+      expandMap: "Expand map",
+      collapseMap: "Collapse map",
+      selectMapCenter: "Select map center",
     },
   },
 } as const;

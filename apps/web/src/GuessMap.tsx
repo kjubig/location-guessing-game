@@ -14,19 +14,23 @@ import { createGuessMapStyle } from "./guessMapStyle";
 
 interface GuessMapProps {
   disabled?: boolean;
+  expanded?: boolean;
   label?: string;
   mode: GameMode;
   onSelect?: (coordinate: Coordinate) => void;
   result?: RoundResult;
+  selectCenterLabel?: string;
   selected?: Coordinate;
 }
 
 export function GuessMap({
   disabled,
+  expanded,
   label = "Mapa zgadywania",
   mode,
   onSelect,
   result,
+  selectCenterLabel = "Wybierz środek mapy",
   selected,
 }: GuessMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,6 +43,13 @@ export function GuessMap({
     disabledRef.current = disabled;
     onSelectRef.current = onSelect;
   }, [disabled, onSelect]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const frame = window.requestAnimationFrame(() => map.resize());
+    return () => window.cancelAnimationFrame(frame);
+  }, [expanded]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -120,7 +131,14 @@ export function GuessMap({
         const bounds = new maplibregl.LngLatBounds()
           .extend([result.guess.longitude, result.guess.latitude])
           .extend([result.answer.longitude, result.answer.latitude]);
-        map.fitBounds(bounds, { duration: 700, maxZoom: 8, padding: 90 });
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        map.fitBounds(bounds, {
+          duration: reducedMotion ? 0 : 700,
+          maxZoom: 8,
+          padding: 90,
+        });
       };
       if (map.loaded()) renderResult();
       else map.once("load", renderResult);
@@ -131,9 +149,40 @@ export function GuessMap({
         map.removeLayer("result-line");
         map.removeSource("result-line");
       }
-      map.easeTo({ center: [127.7, 36.25], zoom: 5.4, duration: 400 });
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      map.easeTo({
+        center: [127.7, 36.25],
+        zoom: 5.4,
+        duration: reducedMotion ? 0 : 400,
+      });
     }
   }, [result, selected]);
 
-  return <div className="guess-map" ref={containerRef} aria-label={label} />;
+  const selectCenter = () => {
+    const center = mapRef.current?.getCenter();
+    if (!center || disabled) return;
+    onSelect?.({ latitude: center.lat, longitude: center.lng });
+  };
+
+  return (
+    <div className="map-frame">
+      <div
+        className="guess-map"
+        ref={containerRef}
+        aria-label={label}
+        role="region"
+      />
+      {!disabled && (
+        <button
+          className="map-center-button"
+          onClick={selectCenter}
+          type="button"
+        >
+          {selectCenterLabel}
+        </button>
+      )}
+    </div>
+  );
 }

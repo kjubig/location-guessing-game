@@ -113,6 +113,23 @@ afterEach(() => {
 });
 
 describe("satellite game flow", () => {
+  it("opens the dedicated sources page and returns home", async () => {
+    vi.stubGlobal("fetch", vi.fn());
+    const user = userEvent.setup();
+
+    render(<App />);
+    await user.click(screen.getByRole("button", { name: "Źródła i licencje" }));
+
+    expect(
+      screen.getByRole("heading", { name: "Źródła i licencje", level: 1 }),
+    ).toBeTruthy();
+    expect(screen.getByText("Copernicus Sentinel-2")).toBeTruthy();
+    expect(screen.getByText("OpenStreetMap")).toBeTruthy();
+
+    await user.click(screen.getByRole("button", { name: "Wróć do gry" }));
+    expect(screen.getByLabelText("Twój nick")).toBeTruthy();
+  });
+
   it("starts a game, selects a map point, and displays the server result", async () => {
     const fetchMock = vi
       .fn()

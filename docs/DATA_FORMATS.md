@@ -11,18 +11,29 @@ Each city contains:
 - `name.en`: English transliteration;
 - `name.ko`: Hangul name;
 - `referenceLocation`: a catalog reference point, not automatically a clue answer;
+- `source`: catalogue provider and its stable record ID;
 - `clueAssetIds`: opaque IDs of generated crops available for that city.
 
 Every generated satellite clue has its own answer equal to the center of the
-displayed crop. Crop bounds, source product, acquisition date, and answer stay in
-the ignored `data/generated` manifest and are seeded into D1. They are not added
-to the public web asset directory.
+displayed crop. Tile address, source product, acquisition date, checksum, and
+answer stay in `data/source/m4-satellite-fixtures.json` in the private
+repository and are seeded into D1. Only the image itself is added to the public
+web asset directory.
 
 ## Opaque asset IDs
 
-Asset IDs must not contain a city, station, line, or coordinate. The pipeline
-will generate random UUID-like IDs and place only the optimized media file under
-`apps/web/public/clues`.
+Asset IDs must not contain a city, station, line, or coordinate. The M4 pipeline
+uses the first 20 hexadecimal characters of a SHA-256 over the pinned source
+item and tile address. This is opaque to a player while remaining deterministic.
+Only the optimized media file is placed under `apps/web/public/clues`.
+
+## Satellite provenance manifest
+
+The M4 manifest is schema-versioned and records selection parameters plus one
+fixture per public image. Each fixture contains `assetId`, `cityId`, `variant`,
+`publicPath`, the exact `answerLocation`, SHA-256, byte count, Sentinel item
+metadata, required attribution, and Web Mercator tile coordinates. It is a
+build/review record, never a frontend asset.
 
 ## Metro clue
 

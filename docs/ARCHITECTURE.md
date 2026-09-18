@@ -102,7 +102,9 @@ W M1 pipeline przygotował uproszczoną mapę Natural Earth i kadry Sentinel-2. 
 M2 pobiera OSM, zapisuje prywatny cache i tworzy anonimowe fragmenty metra.
 Mapa zgadywania w trybie metra nakłada zewnętrzne kafelki rastrowe EOxCloudless;
 tryb satelitarny celowo pozostaje przy pustym obrysie kraju. W M4 pipeline
-przygotuje pełną pulę obrazów Sentinel-2.
+przygotował 90 przypiętych obrazów Sentinel-2 dla 30 miast przez STAC i Data API
+Microsoft Planetary Computer. Publiczne WebP nie zawierają odpowiedzi; manifest
+proweniencji i migracja D1 pozostają w prywatnym repozytorium.
 
 ## Gdzie szukać kodu
 

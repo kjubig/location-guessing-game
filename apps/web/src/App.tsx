@@ -17,6 +17,8 @@ import { useTranslation } from "react-i18next";
 
 import { MetroClue } from "./MetroClue";
 import { LeaderboardPanel } from "./LeaderboardPanel";
+import { SourcesPage } from "./SourcesPage";
+import { SatelliteClue } from "./SatelliteClue";
 import { TurnstileWidget } from "./TurnstileWidget";
 
 const GuessMap = lazy(() =>
@@ -61,10 +63,21 @@ export function App() {
   const [error, setError] = useState<string>();
   const [turnstileToken, setTurnstileToken] = useState<string>();
   const [turnstileAttempt, setTurnstileAttempt] = useState(0);
+  const [showSources, setShowSources] = useState(false);
+  const [mapExpanded, setMapExpanded] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  useEffect(() => {
+    if (!mapExpanded) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMapExpanded(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mapExpanded]);
 
   useEffect(() => {
     const gameId = localStorage.getItem(STORAGE_KEY);
@@ -133,6 +146,16 @@ export function App() {
     if (game?.status === "complete") localStorage.removeItem(STORAGE_KEY);
     setGuess(undefined);
     setShowResult(false);
+    setMapExpanded(false);
+  };
+
+  const returnHome = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setGame(undefined);
+    setGuess(undefined);
+    setShowResult(false);
+    setMapExpanded(false);
+    setShowSources(false);
   };
 
   const result = showResult ? game?.completedRounds.at(-1) : undefined;
@@ -145,7 +168,8 @@ export function App() {
       <header className="topbar">
         <button
           className="brand brand-button"
-          onClick={() => setGame(undefined)}
+          aria-label={`${APP_NAME} — ${t("backToGame")}`}
+          onClick={returnHome}
         >
           <span className="brand-mark" aria-hidden="true">
             G
@@ -160,6 +184,7 @@ export function App() {
           )}
           <button
             className="icon-button"
+            aria-label={t("languageLabel")}
             onClick={() =>
               void i18n.changeLanguage(
                 i18n.language.startsWith("pl") ? "en" : "pl",
@@ -180,7 +205,9 @@ export function App() {
         </div>
       </header>
 
-      {!game ? (
+      {showSources ? (
+        <SourcesPage onClose={() => setShowSources(false)} t={t} />
+      ) : !game ? (
         <main className="start-screen">
           <section className="start-copy">
             <p className="eyebrow">
@@ -278,6 +305,7 @@ export function App() {
               localStorage.removeItem(STORAGE_KEY);
               setGame(undefined);
               setNickname("");
+              setMapExpanded(false);
             }}
           >
             {t("playAgain")}
@@ -300,25 +328,38 @@ export function App() {
                 url={clueUrl}
               />
             ) : (
-              <img
-                className="clue-image"
-                src={clueUrl}
+              <SatelliteClue
                 alt={t("satelliteAlt")}
+                errorLabel={t("satelliteClueError")}
+                key={clueUrl}
+                url={clueUrl ?? ""}
               />
             )}
             <small>{attribution}</small>
           </section>
-          <section className="map-panel">
+          <section
+            className={`map-panel${mapExpanded ? " map-panel--expanded" : ""}`}
+          >
+            <button
+              aria-label={t(mapExpanded ? "collapseMap" : "expandMap")}
+              className="map-expand-button"
+              onClick={() => setMapExpanded((value) => !value)}
+              type="button"
+            >
+              <span aria-hidden="true">{mapExpanded ? "↙" : "↗"}</span>
+            </button>
             <Suspense
               fallback={<div className="map-loading">{t("mapLoading")}</div>}
             >
               <GuessMap
+                expanded={mapExpanded}
                 mode={game.mode}
                 selected={guess}
                 onSelect={selectGuess}
                 disabled={showResult}
                 result={result}
                 label={t("guessMap")}
+                selectCenterLabel={t("selectMapCenter")}
               />
             </Suspense>
             {result ? (
@@ -348,6 +389,12 @@ export function App() {
           </section>
         </main>
       )}
+      <footer className="site-footer">
+        <span>GEOLUKITUKI · MIT</span>
+        <button onClick={() => setShowSources(true)} type="button">
+          {t("sources")}
+        </button>
+      </footer>
     </div>
   );
 }

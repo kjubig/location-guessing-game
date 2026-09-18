@@ -1,7 +1,7 @@
 # GEOLUKITUKI MVP — implementation plan
 
-Status: active; [`DECISIONS.md`](./DECISIONS.md) accepted with amendments  
-Last updated: 2026-09-18
+Status: M0–M4 code complete; owner deployment and content review pending
+Last updated: 2026-09-19
 
 ## Goal
 
@@ -214,12 +214,12 @@ must operate within free service tiers.
 
 ### Scope
 
-1. Finalize the 30–50 city list with stable ID, English transliteration, Hangul,
+1. Finalize the 30-city list with stable ID, English transliteration, Hangul,
    coordinates, and opaque clue asset IDs.
 2. Build the Sentinel-2 generation pipeline:
    - query/select low-cloud L2A products;
-   - create 3–5 consistent true-color crops per city with controlled offsets;
-   - normalize and resize output;
+   - create 3 consistent true-color crops per city with controlled offsets;
+   - request fixed 512 px true-color output;
    - strip metadata and emit opaque WebP filenames;
    - use the displayed crop center as its answer;
    - record private provenance and reproducibility data.
@@ -243,7 +243,7 @@ must operate within free service tiers.
 ### Tests and verification
 
 - pipeline output is deterministic for pinned inputs/configuration;
-- all 30–50 city assets pass metadata and leak validation;
+- all 30-city assets pass metadata and leak validation;
 - both modes complete on supported desktop and mobile browsers;
 - accessibility smoke checks pass for all main screens;
 - production assets and API responses are inspected once more before release;
@@ -260,8 +260,6 @@ must operate within free service tiers.
 
 ### Owner actions
 
-- create a free CDSE account;
-- store CDSE client credentials only in the ignored local environment file;
 - review the final city/clue selection and attribution page.
 
 ## Cross-cutting workstreams
@@ -327,10 +325,12 @@ reviewable and independently green.
 
 ## Implementation state
 
-`DECISIONS.md` has been accepted with amendments. The repository foundation and
-the complete M1 satellite vertical slice are implemented and verified locally.
-M2 is active: its real OSM clue pipeline and playable metro vertical slice are
-complete, while the filtered zoom-12 vector basemap remains in progress.
-The GitHub repository exists; the first public Cloudflare deployment remains an
-M0 owner action because it requires the owner's Cloudflare account and real D1
-resource IDs. M2 has not started.
+`DECISIONS.md` has been accepted with amendments. M0–M4 application code is
+implemented and verified locally: both game modes, server scoring, rankings,
+abuse controls, 30-city/90-image content, licences, accessibility controls, and
+release budgets are present. The simpler EOxCloudless raster decision replaced
+the earlier filtered-vector-basemap proposal for the non-commercial MVP.
+
+The GitHub repository exists. Public Cloudflare deployment, real D1 IDs,
+Turnstile widgets, a human review of all 90 clues, and structured score tuning
+remain owner actions because they require account access or human judgement.

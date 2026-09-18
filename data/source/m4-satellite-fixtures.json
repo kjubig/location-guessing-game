@@ -1,0 +1,2265 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-19",
+  "purpose": "M4 production satellite clue pool",
+  "selection": {
+    "dateRange": "2024-01-01/2025-12-31",
+    "maximumCloudCover": 15,
+    "zoom": 12,
+    "pixelSize": 512,
+    "minimumWebpBytes": 8192,
+    "offsetPolicy": "three nearest globally unique non-uniform tiles"
+  },
+  "fixtures": [
+    {
+      "assetId": "40d6a7b5a41850ca9d6f",
+      "cityId": "seoul",
+      "variant": 1,
+      "publicPath": "/clues/40d6a7b5a41850ca9d6f.webp",
+      "answerLocation": {
+        "latitude": 37.5445773,
+        "longitude": 126.9580078
+      },
+      "sha256": "3766550f65f36172627c1b76e11d8c264a4dc93bbb324fc510fb0aa206153218",
+      "bytes": 73276,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1586
+      }
+    },
+    {
+      "assetId": "14961aa6795a05d24ef0",
+      "cityId": "seoul",
+      "variant": 2,
+      "publicPath": "/clues/14961aa6795a05d24ef0.webp",
+      "answerLocation": {
+        "latitude": 37.5445773,
+        "longitude": 127.0458984
+      },
+      "sha256": "5c8b6ee3e085f72c81e1bd68843699560475caf3f80e3b46bd5d2ba2f27ddf8b",
+      "bytes": 76484,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1586
+      }
+    },
+    {
+      "assetId": "b4c77de898d1a1a42db0",
+      "cityId": "seoul",
+      "variant": 3,
+      "publicPath": "/clues/b4c77de898d1a1a42db0.webp",
+      "answerLocation": {
+        "latitude": 37.4748581,
+        "longitude": 126.8701172
+      },
+      "sha256": "5a8cbac4b02e925d60ee173c3dcc3cda52258fb6a4ce687b94c8dfb5f5933f6b",
+      "bytes": 81870,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3491,
+        "y": 1587
+      }
+    },
+    {
+      "assetId": "ce340c877f070b25bb20",
+      "cityId": "busan",
+      "variant": 1,
+      "publicPath": "/clues/ce340c877f070b25bb20.webp",
+      "answerLocation": {
+        "latitude": 35.0659731,
+        "longitude": 129.0673828
+      },
+      "sha256": "5737272f569697e581ffb02f1c3bcb77eb883a26904621d40b6eeea15c48071a",
+      "bytes": 41144,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250729T021131_R103_T52SDD_20250729T061616",
+        "acquiredAt": "2025-07-29T02:11:31.024000Z",
+        "cloudCover": 0.222279,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3516,
+        "y": 1621
+      }
+    },
+    {
+      "assetId": "0a13ce418cd075fb9a67",
+      "cityId": "busan",
+      "variant": 2,
+      "publicPath": "/clues/0a13ce418cd075fb9a67.webp",
+      "answerLocation": {
+        "latitude": 35.0659731,
+        "longitude": 128.9794922
+      },
+      "sha256": "ef4537598d426ae44bb31ef40234dfc1a24feae2318e899670a4aca968a1fe9b",
+      "bytes": 59018,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3515,
+        "y": 1621
+      }
+    },
+    {
+      "assetId": "c53eb8625b24434a382e",
+      "cityId": "busan",
+      "variant": 3,
+      "publicPath": "/clues/c53eb8625b24434a382e.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 129.0673828
+      },
+      "sha256": "a676b8853c7de0e892c45242254b57a41c90f0c2e9d072dc4ff1d9ffa3005721",
+      "bytes": 87038,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250729T021131_R103_T52SDD_20250729T061616",
+        "acquiredAt": "2025-07-29T02:11:31.024000Z",
+        "cloudCover": 0.222279,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3516,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "c1c5d71654a15c92960b",
+      "cityId": "incheon",
+      "variant": 1,
+      "publicPath": "/clues/c1c5d71654a15c92960b.webp",
+      "answerLocation": {
+        "latitude": 37.4748581,
+        "longitude": 126.6943359
+      },
+      "sha256": "92759f6986fad1a4bb18cbb647c0ea172d4c463f02f7d3b9d75efefcf208c4e8",
+      "bytes": 110114,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SBG_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.00453,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3489,
+        "y": 1587
+      }
+    },
+    {
+      "assetId": "a10e6e80e417893f8bdd",
+      "cityId": "incheon",
+      "variant": 2,
+      "publicPath": "/clues/a10e6e80e417893f8bdd.webp",
+      "answerLocation": {
+        "latitude": 37.4748581,
+        "longitude": 126.7822266
+      },
+      "sha256": "133b5bff28a6e93cc0476fdd14bdc00ecaadccf9a5b5982e1b33dcf359b9d232",
+      "bytes": 89756,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SBG_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.00453,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3490,
+        "y": 1587
+      }
+    },
+    {
+      "assetId": "3697ba24ed608b287c73",
+      "cityId": "incheon",
+      "variant": 3,
+      "publicPath": "/clues/3697ba24ed608b287c73.webp",
+      "answerLocation": {
+        "latitude": 37.4050738,
+        "longitude": 126.6064453
+      },
+      "sha256": "77790ad9a3ab324cb589a8ad16a5a28125fd9d41df70dbda95a2bc4644b0d963",
+      "bytes": 45132,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SBG_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.00453,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3488,
+        "y": 1588
+      }
+    },
+    {
+      "assetId": "475fc246a2aa02daf46d",
+      "cityId": "daegu",
+      "variant": 1,
+      "publicPath": "/clues/475fc246a2aa02daf46d.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 128.6279297
+      },
+      "sha256": "2d5811be4f579f9f9ca388ce2541cfd2e4c60587c35bce1b1617a3350b2117d5",
+      "bytes": 87276,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SDE_20240518T054112",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.000511,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3511,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "81dcb50befb4310fa697",
+      "cityId": "daegu",
+      "variant": 2,
+      "publicPath": "/clues/81dcb50befb4310fa697.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 128.7158203
+      },
+      "sha256": "9a2128021aff541ecda47c2e872b46fdeecfe2bb5b5cdccd3423f9efef3ba1b0",
+      "bytes": 85352,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SDE_20240518T054112",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.000511,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3512,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "1042bc0455a3ace245f9",
+      "cityId": "daegu",
+      "variant": 3,
+      "publicPath": "/clues/1042bc0455a3ace245f9.webp",
+      "answerLocation": {
+        "latitude": 35.7821707,
+        "longitude": 128.5400391
+      },
+      "sha256": "617ea0b0f195ef41be66fa46b1509fd9da9b58eda53b6260f9fcb645e5081187",
+      "bytes": 37036,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SDE_20240518T054112",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.000511,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3510,
+        "y": 1611
+      }
+    },
+    {
+      "assetId": "91116883bac89f91395c",
+      "cityId": "daejeon",
+      "variant": 1,
+      "publicPath": "/clues/91116883bac89f91395c.webp",
+      "answerLocation": {
+        "latitude": 36.350527,
+        "longitude": 127.3974609
+      },
+      "sha256": "928cc41cfd4392e24780ab9875347078bd1b604a702459b9114d79ced1197a77",
+      "bytes": 86706,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3497,
+        "y": 1603
+      }
+    },
+    {
+      "assetId": "8c36fd568b04aaa5b0d7",
+      "cityId": "daejeon",
+      "variant": 2,
+      "publicPath": "/clues/8c36fd568b04aaa5b0d7.webp",
+      "answerLocation": {
+        "latitude": 36.350527,
+        "longitude": 127.4853516
+      },
+      "sha256": "1af5990fbbbe3d0de5a0ccbf2c2b9e7b09f71170f39838f58e1fe1ba1ba2c882",
+      "bytes": 52010,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3498,
+        "y": 1603
+      }
+    },
+    {
+      "assetId": "4dbf843a814381d32460",
+      "cityId": "daejeon",
+      "variant": 3,
+      "publicPath": "/clues/4dbf843a814381d32460.webp",
+      "answerLocation": {
+        "latitude": 36.2797072,
+        "longitude": 127.3095703
+      },
+      "sha256": "463f4df416d24cfddf1a77371bf3a215f684436827d5174feff4fa65791053b3",
+      "bytes": 58728,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3496,
+        "y": 1604
+      }
+    },
+    {
+      "assetId": "9c19d3bb64bea6534210",
+      "cityId": "gwangju",
+      "variant": 1,
+      "publicPath": "/clues/9c19d3bb64bea6534210.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 126.9580078
+      },
+      "sha256": "faeb4090fb5313d9813e325b67f3bc6f7c2fc57c631dc03a24d8f92513474539",
+      "bytes": 26788,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "5a31eec6531729583a0e",
+      "cityId": "gwangju",
+      "variant": 2,
+      "publicPath": "/clues/5a31eec6531729583a0e.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 127.0458984
+      },
+      "sha256": "a8da1882e11a49b5788c001f05e17ebb64352c4e89132586e721864922c3bd3a",
+      "bytes": 41476,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240401T021529_R003_T52SCD_20240401T061510",
+        "acquiredAt": "2024-04-01T02:15:29.024000Z",
+        "cloudCover": 0.005004,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "cf14d9c57b524822dae8",
+      "cityId": "gwangju",
+      "variant": 3,
+      "publicPath": "/clues/cf14d9c57b524822dae8.webp",
+      "answerLocation": {
+        "latitude": 35.0659731,
+        "longitude": 126.8701172
+      },
+      "sha256": "4588627ecea0feda2e0e9791aa168d3d8be1880f95dbd8735fc6c5384dc90002",
+      "bytes": 50174,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3491,
+        "y": 1621
+      }
+    },
+    {
+      "assetId": "8c894406e1091330f470",
+      "cityId": "suwon",
+      "variant": 1,
+      "publicPath": "/clues/8c894406e1091330f470.webp",
+      "answerLocation": {
+        "latitude": 37.26531,
+        "longitude": 127.0458984
+      },
+      "sha256": "ce3c242639bbaa903a4f966334319c4a8eab8e3e0d4d91f3daa4c0427e4f4ad1",
+      "bytes": 85204,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1590
+      }
+    },
+    {
+      "assetId": "6d795aa33a4bc417f203",
+      "cityId": "suwon",
+      "variant": 2,
+      "publicPath": "/clues/6d795aa33a4bc417f203.webp",
+      "answerLocation": {
+        "latitude": 37.26531,
+        "longitude": 127.1337891
+      },
+      "sha256": "8e1fed400117bd3884aaa51a344cd38076cbb3ae017f1cade792ccbbdf8aa56b",
+      "bytes": 65668,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3494,
+        "y": 1590
+      }
+    },
+    {
+      "assetId": "44f8f3a03e4492acd171",
+      "cityId": "suwon",
+      "variant": 3,
+      "publicPath": "/clues/44f8f3a03e4492acd171.webp",
+      "answerLocation": {
+        "latitude": 37.1953306,
+        "longitude": 126.9580078
+      },
+      "sha256": "e0e5f5f69f3a85d1c8ec55400f1089a13b55ff246179452bdfe688bfbcec49ab",
+      "bytes": 71982,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1591
+      }
+    },
+    {
+      "assetId": "1e59e7a14794032b216f",
+      "cityId": "ulsan",
+      "variant": 1,
+      "publicPath": "/clues/1e59e7a14794032b216f.webp",
+      "answerLocation": {
+        "latitude": 35.5679805,
+        "longitude": 129.3310547
+      },
+      "sha256": "20b7ff35384c779ca3887fb8e00fec12284388591cd79794c88b0f2526b84b24",
+      "bytes": 88292,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3519,
+        "y": 1614
+      }
+    },
+    {
+      "assetId": "31fe36a0bc4805d37589",
+      "cityId": "ulsan",
+      "variant": 2,
+      "publicPath": "/clues/31fe36a0bc4805d37589.webp",
+      "answerLocation": {
+        "latitude": 35.5679805,
+        "longitude": 129.4189453
+      },
+      "sha256": "2312496d3338f9eb9145a3e468a6f119af777bd15d2bf0311a7b4820d3a748dc",
+      "bytes": 35306,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3520,
+        "y": 1614
+      }
+    },
+    {
+      "assetId": "3d12c006776418868726",
+      "cityId": "ulsan",
+      "variant": 3,
+      "publicPath": "/clues/3d12c006776418868726.webp",
+      "answerLocation": {
+        "latitude": 35.4964561,
+        "longitude": 129.2431641
+      },
+      "sha256": "33b1989ef0e795d2f4c42f3e5e4e0c5f82b9fa714e4079e6b8880646c531e436",
+      "bytes": 44356,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3518,
+        "y": 1615
+      }
+    },
+    {
+      "assetId": "cce063f17b6b0daeccbb",
+      "cityId": "changwon",
+      "variant": 1,
+      "publicPath": "/clues/cce063f17b6b0daeccbb.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.7158203
+      },
+      "sha256": "09b71cc9c779787081ce2ee1bc4a2b218815c35284c5ce429c0fc74cfa6b670d",
+      "bytes": 76956,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3512,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "8dee9664824c0bed8072",
+      "cityId": "changwon",
+      "variant": 2,
+      "publicPath": "/clues/8dee9664824c0bed8072.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.8037109
+      },
+      "sha256": "9703cfd8a8107b8cfaf1ef061d0128dfad3aec669eb231c7542c29943df32437",
+      "bytes": 82030,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3513,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "46e5bdf41aec0d7efab4",
+      "cityId": "changwon",
+      "variant": 3,
+      "publicPath": "/clues/46e5bdf41aec0d7efab4.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 128.6279297
+      },
+      "sha256": "43c83d57819bb5e5846731b6422f76322f8f5a50b7531aa33208817e626eae5c",
+      "bytes": 32750,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3511,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "b39e2dab15f71880a178",
+      "cityId": "cheongju",
+      "variant": 1,
+      "publicPath": "/clues/b39e2dab15f71880a178.webp",
+      "answerLocation": {
+        "latitude": 36.6331621,
+        "longitude": 127.4853516
+      },
+      "sha256": "571510df4b016446206f2730df0658b5ce21d8f9dc42115de3d969f093e529ba",
+      "bytes": 84016,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3498,
+        "y": 1599
+      }
+    },
+    {
+      "assetId": "e4755fc3d2c5da7c680e",
+      "cityId": "cheongju",
+      "variant": 2,
+      "publicPath": "/clues/e4755fc3d2c5da7c680e.webp",
+      "answerLocation": {
+        "latitude": 36.6331621,
+        "longitude": 127.5732422
+      },
+      "sha256": "b071574146dadba9948b57ff23449c3dab62e65f5d7c71ebde3006aada8918dc",
+      "bytes": 43992,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3499,
+        "y": 1599
+      }
+    },
+    {
+      "assetId": "770b427b4076d0769f01",
+      "cityId": "cheongju",
+      "variant": 3,
+      "publicPath": "/clues/770b427b4076d0769f01.webp",
+      "answerLocation": {
+        "latitude": 36.5626,
+        "longitude": 127.3974609
+      },
+      "sha256": "2f80ab4d9be8d281c166fd876275730031b1ac9755e666cc9ac22114029c7bd3",
+      "bytes": 66048,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3497,
+        "y": 1600
+      }
+    },
+    {
+      "assetId": "ea545fb8802cc31102ef",
+      "cityId": "cheonan",
+      "variant": 1,
+      "publicPath": "/clues/ea545fb8802cc31102ef.webp",
+      "answerLocation": {
+        "latitude": 36.7740925,
+        "longitude": 127.1337891
+      },
+      "sha256": "d6e7a51a5cf506d8b36ee687a80c1130a0e7d3ab1f2ed288d8e228a49f38e30a",
+      "bytes": 79258,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3494,
+        "y": 1597
+      }
+    },
+    {
+      "assetId": "1afb5b75948c3f9199a5",
+      "cityId": "cheonan",
+      "variant": 2,
+      "publicPath": "/clues/1afb5b75948c3f9199a5.webp",
+      "answerLocation": {
+        "latitude": 36.7740925,
+        "longitude": 127.2216797
+      },
+      "sha256": "8a4681a07326c5a7024d46dabcad582740237785dea992180b5b8a3f79ada7bb",
+      "bytes": 59070,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3495,
+        "y": 1597
+      }
+    },
+    {
+      "assetId": "bb053aa60ff8cfa00edf",
+      "cityId": "cheonan",
+      "variant": 3,
+      "publicPath": "/clues/bb053aa60ff8cfa00edf.webp",
+      "answerLocation": {
+        "latitude": 36.7036596,
+        "longitude": 127.0458984
+      },
+      "sha256": "724027e79d8cd2dcb53eb6f4a88fd84d149955dfaf37e06eefd1467f4f8c4dfb",
+      "bytes": 43092,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1598
+      }
+    },
+    {
+      "assetId": "12ebb1a843ee34d415b6",
+      "cityId": "jeonju",
+      "variant": 1,
+      "publicPath": "/clues/12ebb1a843ee34d415b6.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 127.1337891
+      },
+      "sha256": "248a0e6e33f2daa7eb32bfa0ce9c17403df0d51f3b5c3fe7bdbcd32a1b6cb0d8",
+      "bytes": 85226,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3494,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "820a6e965a2dcab46813",
+      "cityId": "jeonju",
+      "variant": 2,
+      "publicPath": "/clues/820a6e965a2dcab46813.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 127.2216797
+      },
+      "sha256": "004d7edfd52e06c597a36d6fe14c471917b8fa41373c76f4b80d5043e71a2a7b",
+      "bytes": 52898,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3495,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "5b02f0c9c6d700eb606e",
+      "cityId": "jeonju",
+      "variant": 3,
+      "publicPath": "/clues/5b02f0c9c6d700eb606e.webp",
+      "answerLocation": {
+        "latitude": 35.7821707,
+        "longitude": 127.0458984
+      },
+      "sha256": "89be6b2b84baf921a66d2a71914311e3720e0e0113e37e669b0ad632c43de345",
+      "bytes": 60412,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1611
+      }
+    },
+    {
+      "assetId": "3a45e12adffd28a54ee9",
+      "cityId": "gimhae",
+      "variant": 1,
+      "publicPath": "/clues/3a45e12adffd28a54ee9.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.8916016
+      },
+      "sha256": "bb3b8646dffaee4f5432f2eb6a7311666ca4156dab228aa879714de6c11d27a4",
+      "bytes": 88226,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3514,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "4b3cbbca2af561ab11d8",
+      "cityId": "gimhae",
+      "variant": 2,
+      "publicPath": "/clues/4b3cbbca2af561ab11d8.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.9794922
+      },
+      "sha256": "22d78053910d4190cb00b3b73d551d9494daa8b942a62cc2d3409c647a9580c2",
+      "bytes": 85292,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3515,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "b530db32c645e5abacb6",
+      "cityId": "gimhae",
+      "variant": 3,
+      "publicPath": "/clues/b530db32c645e5abacb6.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 128.8037109
+      },
+      "sha256": "b18b6f954da5e79e0dd4752631fb01cd4fdec79ca8785cfb66a8c30aa52bef61",
+      "bytes": 46164,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3513,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "a221870b892a1c2a8733",
+      "cityId": "pohang",
+      "variant": 1,
+      "publicPath": "/clues/a221870b892a1c2a8733.webp",
+      "answerLocation": {
+        "latitude": 35.9957854,
+        "longitude": 129.3310547
+      },
+      "sha256": "7d626073b8835c5f983c7dad245435978ed8e1976ac2518a5d05c3ffa9055e29",
+      "bytes": 72754,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3519,
+        "y": 1608
+      }
+    },
+    {
+      "assetId": "bd116bde37e4c36f13de",
+      "cityId": "pohang",
+      "variant": 2,
+      "publicPath": "/clues/bd116bde37e4c36f13de.webp",
+      "answerLocation": {
+        "latitude": 35.9957854,
+        "longitude": 129.4189453
+      },
+      "sha256": "19f7d500da0b7a9439610a27098ec77a2de6e36fd3eeff9f5b0b80c204dfdbbb",
+      "bytes": 61070,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3520,
+        "y": 1608
+      }
+    },
+    {
+      "assetId": "da1dca787762acc803f0",
+      "cityId": "pohang",
+      "variant": 3,
+      "publicPath": "/clues/da1dca787762acc803f0.webp",
+      "answerLocation": {
+        "latitude": 35.9246445,
+        "longitude": 129.2431641
+      },
+      "sha256": "b84222b1fc58b30821317601eb5a7d5b4fa43d93daee71ff67eee3d87c2dac18",
+      "bytes": 60148,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3518,
+        "y": 1609
+      }
+    },
+    {
+      "assetId": "d1ce48f331d5f0dcbf8a",
+      "cityId": "jeju",
+      "variant": 1,
+      "publicPath": "/clues/d1ce48f331d5f0dcbf8a.webp",
+      "answerLocation": {
+        "latitude": 33.5413947,
+        "longitude": 126.5185547
+      },
+      "sha256": "54f7a958fb645ce8f2b3c87f3b724d00b03d9b3cf2cb1339f357d4f9e051ce23",
+      "bytes": 19514,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240401T021529_R003_T52SBC_20240401T062520",
+        "acquiredAt": "2024-04-01T02:15:29.024000Z",
+        "cloudCover": 0.004287,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3487,
+        "y": 1642
+      }
+    },
+    {
+      "assetId": "7b57cd6ec82ea39dd11c",
+      "cityId": "jeju",
+      "variant": 2,
+      "publicPath": "/clues/7b57cd6ec82ea39dd11c.webp",
+      "answerLocation": {
+        "latitude": 33.5413947,
+        "longitude": 126.6064453
+      },
+      "sha256": "fe2416611e5cd886ac4e1ef0f79f4d5ae7e4521a44e5f600bb935fd0b682e0d0",
+      "bytes": 34300,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240401T021529_R003_T52SBC_20240401T062520",
+        "acquiredAt": "2024-04-01T02:15:29.024000Z",
+        "cloudCover": 0.004287,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3488,
+        "y": 1642
+      }
+    },
+    {
+      "assetId": "8ba6c00c6671d03c09b4",
+      "cityId": "jeju",
+      "variant": 3,
+      "publicPath": "/clues/8ba6c00c6671d03c09b4.webp",
+      "answerLocation": {
+        "latitude": 33.468108,
+        "longitude": 126.4306641
+      },
+      "sha256": "f1d22c515e24596b53e1d394e5fa563300107f3a151cd91915220da63f6dd2d0",
+      "bytes": 72344,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240401T021529_R003_T52SBC_20240401T062520",
+        "acquiredAt": "2024-04-01T02:15:29.024000Z",
+        "cloudCover": 0.004287,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3486,
+        "y": 1643
+      }
+    },
+    {
+      "assetId": "0255aebc5afad739303d",
+      "cityId": "gumi",
+      "variant": 1,
+      "publicPath": "/clues/0255aebc5afad739303d.webp",
+      "answerLocation": {
+        "latitude": 36.1378747,
+        "longitude": 128.3642578
+      },
+      "sha256": "e35d11b46c8ac3529bb96496c448c965ebbac9b0a1fb7f8fce36ba91f8ce09c0",
+      "bytes": 43684,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3508,
+        "y": 1606
+      }
+    },
+    {
+      "assetId": "edaf5d0b926b520b310f",
+      "cityId": "gumi",
+      "variant": 2,
+      "publicPath": "/clues/edaf5d0b926b520b310f.webp",
+      "answerLocation": {
+        "latitude": 36.1378747,
+        "longitude": 128.4521484
+      },
+      "sha256": "66b9d336748738c352c00eb107eb69fb310fa7a7388a88eff6c99477bd507c3a",
+      "bytes": 35700,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3509,
+        "y": 1606
+      }
+    },
+    {
+      "assetId": "4c677eb16dba73c6404c",
+      "cityId": "gumi",
+      "variant": 3,
+      "publicPath": "/clues/4c677eb16dba73c6404c.webp",
+      "answerLocation": {
+        "latitude": 36.0668621,
+        "longitude": 128.2763672
+      },
+      "sha256": "686a70a3c34334afc82ae2db2c5f9d3c5318c6048ba151a38cb48eb1c386c213",
+      "bytes": 50562,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3507,
+        "y": 1607
+      }
+    },
+    {
+      "assetId": "f235018525eed5bd3fce",
+      "cityId": "sejong",
+      "variant": 1,
+      "publicPath": "/clues/f235018525eed5bd3fce.webp",
+      "answerLocation": {
+        "latitude": 36.5626,
+        "longitude": 127.3095703
+      },
+      "sha256": "fe005774c4916c4606f76d8cd587414bfafd972cdc948fc300f97779b50363f2",
+      "bytes": 72768,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3496,
+        "y": 1600
+      }
+    },
+    {
+      "assetId": "840c24f7fb0983ff7b7e",
+      "cityId": "sejong",
+      "variant": 2,
+      "publicPath": "/clues/840c24f7fb0983ff7b7e.webp",
+      "answerLocation": {
+        "latitude": 36.4919735,
+        "longitude": 127.2216797
+      },
+      "sha256": "d454fb8696233b606ced245dcf42caf99c35eec0d19b83acb719f5f10df58dbc",
+      "bytes": 66548,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3495,
+        "y": 1601
+      }
+    },
+    {
+      "assetId": "1da0af39e1ec4d81dc14",
+      "cityId": "sejong",
+      "variant": 3,
+      "publicPath": "/clues/1da0af39e1ec4d81dc14.webp",
+      "answerLocation": {
+        "latitude": 36.4919735,
+        "longitude": 127.3095703
+      },
+      "sha256": "2aeec675d1f0c8222b8af891cf5fd436af3b9b24a9a48398a0ceae3c4bfb0c17",
+      "bytes": 63542,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3496,
+        "y": 1601
+      }
+    },
+    {
+      "assetId": "f1d06b23177e8c94906c",
+      "cityId": "pyeongtaek",
+      "variant": 1,
+      "publicPath": "/clues/f1d06b23177e8c94906c.webp",
+      "answerLocation": {
+        "latitude": 36.9850031,
+        "longitude": 127.0458984
+      },
+      "sha256": "c804f5ae3e304767e1bb53e86c6e7a5d4a0a9548b85d66f1ad709944819cd93a",
+      "bytes": 67278,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1594
+      }
+    },
+    {
+      "assetId": "b70c07a1e7ef9c875cba",
+      "cityId": "pyeongtaek",
+      "variant": 2,
+      "publicPath": "/clues/b70c07a1e7ef9c875cba.webp",
+      "answerLocation": {
+        "latitude": 36.9850031,
+        "longitude": 127.1337891
+      },
+      "sha256": "aba4d4d729986f7e9f2e94d4dbe6401927570e5d40c7be13a978b8ada4d791a1",
+      "bytes": 73838,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3494,
+        "y": 1594
+      }
+    },
+    {
+      "assetId": "ba8573d7d8480e820846",
+      "cityId": "pyeongtaek",
+      "variant": 3,
+      "publicPath": "/clues/ba8573d7d8480e820846.webp",
+      "answerLocation": {
+        "latitude": 36.9147643,
+        "longitude": 126.9580078
+      },
+      "sha256": "6ab328d059aaef72d74b840c206a46251be54e04289e06258aa057fb0cb583b9",
+      "bytes": 46158,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCF_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002787,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1595
+      }
+    },
+    {
+      "assetId": "71a4e84ceb42668f6ad6",
+      "cityId": "yangsan",
+      "variant": 1,
+      "publicPath": "/clues/71a4e84ceb42668f6ad6.webp",
+      "answerLocation": {
+        "latitude": 35.3532161,
+        "longitude": 129.0673828
+      },
+      "sha256": "ad462b36d3687e5106d92548d9c8b18c20e1eb9d07565529e08010bc5498a1d4",
+      "bytes": 67228,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20251129T020939_R103_T52SDE_20251129T034700",
+        "acquiredAt": "2025-11-29T02:09:39.024000Z",
+        "cloudCover": 0.013988,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3516,
+        "y": 1617
+      }
+    },
+    {
+      "assetId": "8f697dbed0ffc66ef95a",
+      "cityId": "yangsan",
+      "variant": 2,
+      "publicPath": "/clues/8f697dbed0ffc66ef95a.webp",
+      "answerLocation": {
+        "latitude": 35.3532161,
+        "longitude": 129.1552734
+      },
+      "sha256": "fe386a2eb8866f5c42b860601e1eba4c7724c7fa9bf6f340428d743e474264fd",
+      "bytes": 46824,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3517,
+        "y": 1617
+      }
+    },
+    {
+      "assetId": "42c01dba26512be94d8e",
+      "cityId": "yangsan",
+      "variant": 3,
+      "publicPath": "/clues/42c01dba26512be94d8e.webp",
+      "answerLocation": {
+        "latitude": 35.2815007,
+        "longitude": 128.9794922
+      },
+      "sha256": "05ff6e4ebccc6168c7b24bca19b9f9e39b42d4895678e6dbfdcd4b6962262944",
+      "bytes": 53370,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SDE_20240518T054112",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.000511,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3515,
+        "y": 1618
+      }
+    },
+    {
+      "assetId": "a41a36116bfec8408508",
+      "cityId": "wonju",
+      "variant": 1,
+      "publicPath": "/clues/a41a36116bfec8408508.webp",
+      "answerLocation": {
+        "latitude": 37.3352244,
+        "longitude": 127.9248047
+      },
+      "sha256": "ae82a062e5267042673b76e3c8a5ad2dc10240626e20d6d82907af55aea41aeb",
+      "bytes": 72316,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3503,
+        "y": 1589
+      }
+    },
+    {
+      "assetId": "c7f01d8d902545cd377c",
+      "cityId": "wonju",
+      "variant": 2,
+      "publicPath": "/clues/c7f01d8d902545cd377c.webp",
+      "answerLocation": {
+        "latitude": 37.3352244,
+        "longitude": 128.0126953
+      },
+      "sha256": "cbe773b08810b319a0c0c90f2a9810b442b3890819ab414134997eeb737a6371",
+      "bytes": 57536,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SDG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.029999,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3504,
+        "y": 1589
+      }
+    },
+    {
+      "assetId": "09ebfecd02da7af68606",
+      "cityId": "wonju",
+      "variant": 3,
+      "publicPath": "/clues/09ebfecd02da7af68606.webp",
+      "answerLocation": {
+        "latitude": 37.26531,
+        "longitude": 127.8369141
+      },
+      "sha256": "353680824240baa1378e6d793641fce0ede840024d3f5d3eea3d854cd43e59ca",
+      "bytes": 51860,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3502,
+        "y": 1590
+      }
+    },
+    {
+      "assetId": "652977a60e842122eb6a",
+      "cityId": "jinju",
+      "variant": 1,
+      "publicPath": "/clues/652977a60e842122eb6a.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.1005859
+      },
+      "sha256": "0dfc595a687b4ae79a433d24bbdcaaaa9b1b27eaccda2710afe5f6583e48d186",
+      "bytes": 63686,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SDD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.009821,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3505,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "72660842f98977026288",
+      "cityId": "jinju",
+      "variant": 2,
+      "publicPath": "/clues/72660842f98977026288.webp",
+      "answerLocation": {
+        "latitude": 35.2097216,
+        "longitude": 128.1884766
+      },
+      "sha256": "105d5a6e8c419e047705b4090293c7ecdd1e7973266bd7f27412d72141fbef09",
+      "bytes": 41356,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SDD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.009821,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3506,
+        "y": 1619
+      }
+    },
+    {
+      "assetId": "cf9d0286ccc1675980fa",
+      "cityId": "jinju",
+      "variant": 3,
+      "publicPath": "/clues/cf9d0286ccc1675980fa.webp",
+      "answerLocation": {
+        "latitude": 35.1378791,
+        "longitude": 128.0126953
+      },
+      "sha256": "a739586c0066201da5a7bfb16d406758180ff65e097e3d9c472b85c2c30e1b3d",
+      "bytes": 33558,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SDD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.009821,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3504,
+        "y": 1620
+      }
+    },
+    {
+      "assetId": "4a7e407a1fa0b254340d",
+      "cityId": "iksan",
+      "variant": 1,
+      "publicPath": "/clues/4a7e407a1fa0b254340d.webp",
+      "answerLocation": {
+        "latitude": 35.9246445,
+        "longitude": 126.9580078
+      },
+      "sha256": "2b683f717b435fbf43b26b1f392e3540604d0ade5796c04846fbf54f0e009e5f",
+      "bytes": 79336,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3492,
+        "y": 1609
+      }
+    },
+    {
+      "assetId": "d46a59c9cef2708eba35",
+      "cityId": "iksan",
+      "variant": 2,
+      "publicPath": "/clues/d46a59c9cef2708eba35.webp",
+      "answerLocation": {
+        "latitude": 35.9246445,
+        "longitude": 127.0458984
+      },
+      "sha256": "f79747f7db215bac4913c075baf9880340c18aab486588a20e2fc119d4aab657",
+      "bytes": 74204,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3493,
+        "y": 1609
+      }
+    },
+    {
+      "assetId": "dfb1849a89fef813e79f",
+      "cityId": "iksan",
+      "variant": 3,
+      "publicPath": "/clues/dfb1849a89fef813e79f.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 126.8701172
+      },
+      "sha256": "921eb8117f9b91b2faf1146f5eb8ab2a18bcb2597d405de9441b2df2cfb45e47",
+      "bytes": 81548,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3491,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "3e8cbda783a4b29c127b",
+      "cityId": "chuncheon",
+      "variant": 1,
+      "publicPath": "/clues/3e8cbda783a4b29c127b.webp",
+      "answerLocation": {
+        "latitude": 37.8921955,
+        "longitude": 127.7490234
+      },
+      "sha256": "53b4bd5ae8928720678e6cbf3f919893bd227a0c7a5993de89119785ebe74c7b",
+      "bytes": 79590,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SCH_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.000614,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3501,
+        "y": 1581
+      }
+    },
+    {
+      "assetId": "25f7551fbf60540f0374",
+      "cityId": "chuncheon",
+      "variant": 2,
+      "publicPath": "/clues/25f7551fbf60540f0374.webp",
+      "answerLocation": {
+        "latitude": 37.8921955,
+        "longitude": 127.8369141
+      },
+      "sha256": "ba4b5e79f80b6324018eac03476ef6be0403e906e25ae346cba55e0f946f1ba9",
+      "bytes": 25812,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20250910T022131_R003_T52SCH_20250910T062313",
+        "acquiredAt": "2025-09-10T02:21:31.024000Z",
+        "cloudCover": 0.000614,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3502,
+        "y": 1581
+      }
+    },
+    {
+      "assetId": "a2fe0dbcfe3878255498",
+      "cityId": "chuncheon",
+      "variant": 3,
+      "publicPath": "/clues/a2fe0dbcfe3878255498.webp",
+      "answerLocation": {
+        "latitude": 37.8228024,
+        "longitude": 127.6611328
+      },
+      "sha256": "e9bd905efa2aa287243f70769d43cf9e41fdff8e70da710248d123ab9f867e2a",
+      "bytes": 47986,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.004874,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3500,
+        "y": 1582
+      }
+    },
+    {
+      "assetId": "d288b36ff5a1e3626381",
+      "cityId": "suncheon",
+      "variant": 1,
+      "publicPath": "/clues/d288b36ff5a1e3626381.webp",
+      "answerLocation": {
+        "latitude": 34.921971,
+        "longitude": 127.4853516
+      },
+      "sha256": "7c105878a4e884a4516f89de3b9a65825177af479495b1c26964b8c936f7c51c",
+      "bytes": 63148,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3498,
+        "y": 1623
+      }
+    },
+    {
+      "assetId": "9e1e672969e0c15d93f2",
+      "cityId": "suncheon",
+      "variant": 2,
+      "publicPath": "/clues/9e1e672969e0c15d93f2.webp",
+      "answerLocation": {
+        "latitude": 34.921971,
+        "longitude": 127.5732422
+      },
+      "sha256": "98f0056918dcc0406a9e53297ed888b65c70f0fe025fc5f96376fc3bf9c668d5",
+      "bytes": 64548,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3499,
+        "y": 1623
+      }
+    },
+    {
+      "assetId": "08ea58eea384a8689ccf",
+      "cityId": "suncheon",
+      "variant": 3,
+      "publicPath": "/clues/08ea58eea384a8689ccf.webp",
+      "answerLocation": {
+        "latitude": 34.849875,
+        "longitude": 127.3974609
+      },
+      "sha256": "37af7c2a3db5fc122c80a9a7b8138802f6469a7375939e95ac0c9de34b56af0c",
+      "bytes": 37800,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3497,
+        "y": 1624
+      }
+    },
+    {
+      "assetId": "8724faebe066129b7097",
+      "cityId": "yeosu",
+      "variant": 1,
+      "publicPath": "/clues/8724faebe066129b7097.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 127.6611328
+      },
+      "sha256": "76c4ee960c106b15e88c9fd043814312ccb4c90e90a22cda93a197c44a6247ec",
+      "bytes": 62878,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3500,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "be9241246c74a5912472",
+      "cityId": "yeosu",
+      "variant": 2,
+      "publicPath": "/clues/be9241246c74a5912472.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 127.7490234
+      },
+      "sha256": "7e42211c0ac1e32366a5a51d8255751f312ea841b1862c236efefceef9eeb5f7",
+      "bytes": 29576,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3501,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "50b628fc4040c15c4668",
+      "cityId": "yeosu",
+      "variant": 3,
+      "publicPath": "/clues/50b628fc4040c15c4668.webp",
+      "answerLocation": {
+        "latitude": 34.7054934,
+        "longitude": 127.5732422
+      },
+      "sha256": "ecadc6925db92e3b93c5742a8cf11049ed2fc1f50047e03ebf4a8eadea3adf4b",
+      "bytes": 27054,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20251020T022131_R003_T52SCD_20251020T071520",
+        "acquiredAt": "2025-10-20T02:21:31.024000Z",
+        "cloudCover": 0.007164,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3499,
+        "y": 1626
+      }
+    },
+    {
+      "assetId": "7aec4960950ad1cd2adf",
+      "cityId": "mokpo",
+      "variant": 1,
+      "publicPath": "/clues/7aec4960950ad1cd2adf.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 126.4306641
+      },
+      "sha256": "891501fc7b1af5b8d472b0995c2734a8529c428b51b1de477bdb0dba5ee401a0",
+      "bytes": 74062,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SBD_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.010401,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3486,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "b3dda0ba8f4eb44652ad",
+      "cityId": "mokpo",
+      "variant": 2,
+      "publicPath": "/clues/b3dda0ba8f4eb44652ad.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 126.5185547
+      },
+      "sha256": "7a4729565b88edb2af3daf2242cef7d7d4046395a2cf93ff349a526f511a1a87",
+      "bytes": 55056,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SBD_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.010401,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3487,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "820a08100a84ff655601",
+      "cityId": "mokpo",
+      "variant": 3,
+      "publicPath": "/clues/820a08100a84ff655601.webp",
+      "answerLocation": {
+        "latitude": 34.7054934,
+        "longitude": 126.3427734
+      },
+      "sha256": "cd201c5157d8f273cebae54e722b7917a1dea25aa80a0b4919a457a0f6a74411",
+      "bytes": 45218,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T51SYU_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.005859,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3485,
+        "y": 1626
+      }
+    },
+    {
+      "assetId": "aecee36e1e717911707e",
+      "cityId": "gunsan",
+      "variant": 1,
+      "publicPath": "/clues/aecee36e1e717911707e.webp",
+      "answerLocation": {
+        "latitude": 35.9957854,
+        "longitude": 126.6943359
+      },
+      "sha256": "1911d1059041d4f9a828a724f8028eee75591df256d6eb7cf973ea5195d5fe2c",
+      "bytes": 62158,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SBE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.007847,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3489,
+        "y": 1608
+      }
+    },
+    {
+      "assetId": "563f8fbb0b3842e42df3",
+      "cityId": "gunsan",
+      "variant": 2,
+      "publicPath": "/clues/563f8fbb0b3842e42df3.webp",
+      "answerLocation": {
+        "latitude": 35.9957854,
+        "longitude": 126.7822266
+      },
+      "sha256": "6f9ca703c393c8d59b345c0136ba6fc08a846db5f5d4c47c69ce572f846c1580",
+      "bytes": 27310,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SCE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.002979,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3490,
+        "y": 1608
+      }
+    },
+    {
+      "assetId": "55447b01a2d7bca17438",
+      "cityId": "gunsan",
+      "variant": 3,
+      "publicPath": "/clues/55447b01a2d7bca17438.webp",
+      "answerLocation": {
+        "latitude": 35.9246445,
+        "longitude": 126.6064453
+      },
+      "sha256": "33b26e37130f2a51fd4c1d4b3672e96857b2e966d1ff2ba05c84ed111f4ffdc9",
+      "bytes": 61896,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SBE_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.007847,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3488,
+        "y": 1609
+      }
+    },
+    {
+      "assetId": "0537fc6bd27f1d123eb7",
+      "cityId": "gyeongju",
+      "variant": 1,
+      "publicPath": "/clues/0537fc6bd27f1d123eb7.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 129.2431641
+      },
+      "sha256": "4538589815525892ea809eacc4ce1a973ba45a548f525d1ed9c4c93a326bacde",
+      "bytes": 66002,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3518,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "600f0a6ad18d65b7dea9",
+      "cityId": "gyeongju",
+      "variant": 2,
+      "publicPath": "/clues/600f0a6ad18d65b7dea9.webp",
+      "answerLocation": {
+        "latitude": 35.8534396,
+        "longitude": 129.3310547
+      },
+      "sha256": "33d67aece2d723381153a4b672f59a4e8e4b3357a6122987ddee5fc709f9a484",
+      "bytes": 27160,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3519,
+        "y": 1610
+      }
+    },
+    {
+      "assetId": "0ab08883a66ad1d8132d",
+      "cityId": "gyeongju",
+      "variant": 3,
+      "publicPath": "/clues/0ab08883a66ad1d8132d.webp",
+      "answerLocation": {
+        "latitude": 35.7821707,
+        "longitude": 129.1552734
+      },
+      "sha256": "3f11cdc3fa125ef247dea0ff971f0d7954433592931c114a62029bce887e300d",
+      "bytes": 43526,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2B_MSIL2A_20240518T020649_R103_T52SEE_20240518T053713",
+        "acquiredAt": "2024-05-18T02:06:49.024000Z",
+        "cloudCover": 0.017216,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3517,
+        "y": 1611
+      }
+    },
+    {
+      "assetId": "22a7a5b8799cdaa3c251",
+      "cityId": "geoje",
+      "variant": 1,
+      "publicPath": "/clues/22a7a5b8799cdaa3c251.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 128.7158203
+      },
+      "sha256": "7d275bed1742cc06ce6bd1806b83f3f5086f303742cdbd9839d00b18112bf95f",
+      "bytes": 11300,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3512,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "40706b1ceef8813b3a51",
+      "cityId": "geoje",
+      "variant": 2,
+      "publicPath": "/clues/40706b1ceef8813b3a51.webp",
+      "answerLocation": {
+        "latitude": 34.7777158,
+        "longitude": 128.6279297
+      },
+      "sha256": "5b84bd10e42ba2c64b9e7eb5ff1259054ba998a10480fc8ea7fca5e6d7e52dc6",
+      "bytes": 28180,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3511,
+        "y": 1625
+      }
+    },
+    {
+      "assetId": "5f08028bfe840df1019c",
+      "cityId": "geoje",
+      "variant": 3,
+      "publicPath": "/clues/5f08028bfe840df1019c.webp",
+      "answerLocation": {
+        "latitude": 34.849875,
+        "longitude": 128.7158203
+      },
+      "sha256": "22e351319fb0c30ce98de0a48562cc9e7e943da6921399b4bd4828a91b6d75f2",
+      "bytes": 39026,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2A_MSIL2A_20240503T020651_R103_T52SDD_20240503T072233",
+        "acquiredAt": "2024-05-03T02:06:51.024000Z",
+        "cloudCover": 0.011267,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2024)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3512,
+        "y": 1624
+      }
+    },
+    {
+      "assetId": "3800e3ae1236526c431e",
+      "cityId": "gangneung",
+      "variant": 1,
+      "publicPath": "/clues/3800e3ae1236526c431e.webp",
+      "answerLocation": {
+        "latitude": 37.753344,
+        "longitude": 128.8916016
+      },
+      "sha256": "121b3d8a895ea10378113b52e5d2054414fe9efdf9f6c036e2474a10c1d17258",
+      "bytes": 86414,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SDG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.029999,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3514,
+        "y": 1583
+      }
+    },
+    {
+      "assetId": "ff06c9a90739d0dc12ba",
+      "cityId": "gangneung",
+      "variant": 2,
+      "publicPath": "/clues/ff06c9a90739d0dc12ba.webp",
+      "answerLocation": {
+        "latitude": 37.753344,
+        "longitude": 128.9794922
+      },
+      "sha256": "952a0e0704480f990a65f3ad5bfc415d5edaa4a7a3a30b80c49de1438e896bff",
+      "bytes": 29654,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SDG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.029999,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3515,
+        "y": 1583
+      }
+    },
+    {
+      "assetId": "8431613d9b3bf6a40490",
+      "cityId": "gangneung",
+      "variant": 3,
+      "publicPath": "/clues/8431613d9b3bf6a40490.webp",
+      "answerLocation": {
+        "latitude": 37.6838203,
+        "longitude": 128.8037109
+      },
+      "sha256": "88813186674813e672e6e5ee3922cc2c71f7dd85043699ab5430ebb4184091f5",
+      "bytes": 59138,
+      "source": {
+        "collection": "sentinel-2-l2a",
+        "itemId": "S2C_MSIL2A_20250322T021601_R003_T52SDG_20250322T062116",
+        "acquiredAt": "2025-03-22T02:16:01.025000Z",
+        "cloudCover": 0.029999,
+        "provider": "Microsoft Planetary Computer",
+        "attribution": "Contains modified Copernicus Sentinel data (2025)"
+      },
+      "tile": {
+        "zoom": 12,
+        "x": 3513,
+        "y": 1584
+      }
+    }
+  ]
+}

@@ -9,26 +9,27 @@ flows, and milestone retrospectives are documented as the application grows.
 
 ## Current state
 
-M0 established the foundation. The M1 satellite vertical slice is complete in
-the local environment and includes:
+M0–M4 application work is complete in the local environment and includes:
 
 - React + Vite + TypeScript frontend;
 - Cloudflare Worker API using Hono;
 - Cloudflare Static Assets and D1 configuration;
 - separate production and preview environments;
 - pnpm workspace, tests, linting, formatting, and CI;
-- Python/uv workspace reserved for geospatial pipelines;
-- five real Sentinel-2 development clues with reproducible provenance;
+- dependency-free Python workspace for offline geospatial pipelines;
+- 90 real Sentinel-2 WebP clues for 30 cities with reproducible provenance;
 - nickname validation, distance and server-side scoring primitives;
 - D1 game/round schema and server-controlled game API;
 - a responsive five-round interface with game restore, result markers and line,
   summary, Polish/English translations, and light/dark themes;
-- component, API, domain, data-leak, and production-build verification.
+- five real, anonymized OSM metro clues and satellite context for metro guesses;
+- verified per-mode leaderboards, Turnstile, request limits, and bounded cleanup;
+- component, API, domain, pipeline, data-leak, and production-build verification;
+- bilingual source/licence page, keyboard/touch map controls, reduced motion,
+  responsive layout, and explicit asset budgets.
 
-M2 is now active. Its first playable checkpoint adds five real, anonymized OSM
-metro clues, a server-scored metro mode, and a dedicated SVG renderer. The
-filtered detailed guessing-map tiles remain to be implemented. The first public
-Cloudflare deployment remains a separate owner setup step. See [the
+The first public Cloudflare deployment, human review of all clues, and structured
+score tuning remain owner steps. See [the
 implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.md).
 
 ## Learn how it works
@@ -47,6 +48,11 @@ implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.m
 - [Data formats](docs/DATA_FORMATS.md) — city catalog and future clue manifests.
 - [M3 implementation journal](docs/milestones/M3.md) — ranking transactions,
   abuse controls, and verification notes.
+- [M4 implementation journal](docs/milestones/M4.md) — 30-city content pipeline,
+  accessibility, release checks, failures, and operations.
+- [Sources and licences](docs/SOURCES.md) — attribution and reuse boundaries.
+- [Release checklist](docs/RELEASE_CHECKLIST.md) — security, browser, content,
+  migration, and rollback checks before production.
 
 ## Quick start
 
@@ -90,4 +96,6 @@ Replace them with the IDs returned after creating both D1 databases.
 Application code is MIT licensed. Third-party datasets and generated artifacts
 retain their own terms. In particular, OSM-derived data is subject to ODbL and
 Copernicus Sentinel imagery requires appropriate attribution. See
-`docs/DECISIONS.md` before publishing data.
+[`docs/SOURCES.md`](docs/SOURCES.md) before publishing data. The current
+EOxCloudless guessing-map layer is suitable only for the project's
+non-commercial test unless an appropriate commercial licence is obtained.

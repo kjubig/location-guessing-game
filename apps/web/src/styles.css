@@ -240,6 +240,14 @@ a:focus-visible {
   margin-bottom: 12px;
   background: #17221d;
 }
+.clue-image--status {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
 .metro-clue {
   width: 100%;
   aspect-ratio: 1;
@@ -282,12 +290,50 @@ a:focus-visible {
   flex-direction: column;
   gap: 14px;
 }
+.map-panel--expanded {
+  position: fixed;
+  inset: 12px;
+  z-index: 20;
+  background: var(--paper);
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.72);
+}
+.map-frame {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
 .guess-map {
   width: 100%;
   flex: 1;
   min-height: 560px;
   overflow: hidden;
   border-radius: 18px;
+}
+.map-center-button,
+.map-expand-button {
+  position: absolute;
+  z-index: 3;
+  min-height: 44px;
+  border: 1px solid rgba(23, 34, 29, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #17221d;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+}
+.map-center-button {
+  left: 50%;
+  top: 18px;
+  padding: 0 18px;
+  transform: translateX(-50%);
+}
+.map-expand-button {
+  top: 34px;
+  left: 34px;
+  width: 44px;
+  padding: 0;
 }
 .map-loading {
   flex: 1;
@@ -357,6 +403,73 @@ a:focus-visible {
 }
 .summary-list div + div {
   border-top: 1px solid var(--line);
+}
+
+.site-footer {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.site-footer button {
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.sources-page {
+  max-width: 920px;
+  min-height: calc(100vh - 152px);
+  margin: 0 auto;
+  padding: 72px 0;
+}
+.sources-page h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+}
+.sources-page__intro {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.source-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 36px 0;
+}
+.source-card,
+.license-note {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+.source-card h2,
+.license-note h2 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.source-card p,
+.license-note p {
+  margin-bottom: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.source-card a {
+  color: var(--ink);
+  font-weight: 800;
+}
+.license-note {
+  margin-bottom: 28px;
 }
 
 .brand-mark {
@@ -799,6 +912,24 @@ footer .footer-docs {
     right: 28px;
     bottom: 28px;
   }
+  .map-panel--expanded {
+    inset: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  .map-expand-button {
+    top: 24px;
+    left: 24px;
+  }
+  .map-center-button {
+    max-width: calc(100% - 96px);
+  }
+  .source-list {
+    grid-template-columns: 1fr;
+  }
+  .sources-page {
+    padding: 48px 0;
+  }
   .app-shell {
     width: min(100% - 24px, 1240px);
   }
@@ -876,5 +1007,7 @@ footer .footer-docs {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

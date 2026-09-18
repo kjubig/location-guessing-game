@@ -149,15 +149,15 @@ will be removed by a daily scheduled cleanup or bounded opportunistic cleanup.
 
 ### 5. Satellite imagery
 
-**Decision:** Sentinel-2 L2A imagery processed offline by a Python script and
-committed as optimized WebP. CDSE is the verified default source. Microsoft
-Planetary Computer remains an M4 research option only if its current anonymous
-access, stability, and terms are confirmed before implementation.
+**Decision:** Sentinel-2 L2A imagery selected and rendered offline by a Python
+script and committed as optimized WebP. M4 verified Microsoft Planetary
+Computer's anonymous STAC and Data APIs and uses them for the MVP. CDSE remains
+an alternative if the service or licensing requirements change.
 
-The pipeline will select low-cloud imagery, produce consistent true-color crops,
-normalize contrast, resize output, strip metadata, and write opaque random asset
-identifiers. Each city should have 3–5 crops with controlled offsets and scale
-variation so the game is not learned after seeing one image. The correct answer
+The pipeline selects low-cloud imagery, requests consistent 512 px true-color
+tiles, rejects EXIF/XMP metadata, and writes deterministic opaque asset
+identifiers. Each of 30 cities has three controlled nearby crops so the game is
+not learned after seeing one image. The correct answer
 is the geographic center of the displayed crop, not an administrative or
 subjective city center.
 
@@ -165,12 +165,12 @@ A private-repository manifest will retain source product ID, acquisition date,
 crop bounds, answer coordinate, and asset ID for reproducibility; none of that
 manifest is copied into public frontend assets.
 
-CDSE requires a free registered account. Current general-user quotas include
-10,000 Sentinel Hub requests and 10,000 processing units per month; direct data
-access has separate fair-use quotas. This is sufficient for a one-time 30–50
-city pipeline. Copernicus Sentinel data permits reproduction, distribution,
-public communication, adaptation, and combination, subject to the legal notice
-and appropriate attribution.
+Planetary Computer avoids a project account for this fixed pipeline and its Data
+API returns WebP directly, so no local raster dependency was added. The source
+manifest pins every item and tile because anonymous service availability is not
+a runtime guarantee. Copernicus Sentinel data permits reproduction,
+distribution, public communication, adaptation, and combination, subject to the
+legal notice and appropriate attribution.
 
 Each clue will show a visible credit such as `Contains modified Copernicus
 Sentinel data (year)`, with full provenance in the application's attribution
@@ -293,13 +293,12 @@ packages/
   core/                 shared domain types, schemas, scoring, validation
 data/
   source/               reviewed source lists and raw-data checksums
-  generated/            reproducible answer manifests (private repository only)
   cities.json            city catalog: id, English name, Hangul, coordinates
 apps/web/public/
   clues/                 opaque, metadata-free runtime assets
-  map/                   Natural Earth data and filtered vector tiles
+  map/                   Natural Earth country outline
 scripts/
-  geodata/              Python/uv pipelines
+  geodata/              dependency-free Python pipelines
 migrations/             D1 SQL migrations
 docs/                   decisions, data provenance, operations
 ```
@@ -307,7 +306,7 @@ docs/                   decisions, data provenance, operations
 `apps/web/public/` must pass an automated leak check before build. The city
 catalog schema contains `id`, English transliteration, Hangul name, longitude,
 latitude, and an array of opaque clue asset IDs. Answer coordinates and crop
-bounds remain in the private generated manifest/server seed. Source/provenance
+bounds remain in the private source manifest/server seed. Source/provenance
 data has its own license notices; the MIT license applies to application code,
 not automatically to third-party or derived datasets.
 
@@ -346,8 +345,8 @@ contracts and could accidentally establish an insecure asset format.
 
 - fetch/cache OSM subway and light-rail data;
 - normalize topology and generate local-coordinate excerpts;
-- generate and validate filtered small vector tiles through zoom 12, staying
-  within Cloudflare's per-file and total-file limits;
+- provide satellite terrain context without labels or transit overlays on the
+  metro guessing map;
 - validate that published clues contain no WGS84 coordinates or identifying
   properties;
 - implement the Mini Metro-inspired renderer and the full five-round flow;
@@ -366,7 +365,7 @@ contracts and could accidentally establish an insecure asset format.
 
 ### M4 — production content and polish
 
-- generate and curate 3–5 Sentinel-2 crops for each of 30–50 cities;
+- generate and curate three Sentinel-2 crops for each of 30 cities;
 - accessibility, keyboard/touch behavior, light/dark themes, and mobile tuning;
 - source/licensing page, visible attributions, provenance records, and data
   refresh instructions;
@@ -387,11 +386,11 @@ milestone is ready:
 4. Enable non-production branch builds and Worker preview URLs.
 5. At M3, create a Turnstile widget and store its secret in Cloudflare; commit
    only the public site key/example variable names.
-6. Before the production imagery run, create a CDSE account and place its client
-   credentials in a local ignored `.env` file.
+6. Review the 90 generated satellite clues and the attribution page before the
+   first production release.
 
 ## Approval state
 
-The decisions were accepted with the amendments recorded above. M0 implementation
-may proceed. Dependency installation and external deployment still require
-network access and the owner-controlled account actions listed above.
+The decisions were accepted with the amendments recorded above. M0–M4 code is
+implemented locally. External deployment still requires the owner-controlled
+Cloudflare account actions listed above.
