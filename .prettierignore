@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.wrangler
+pnpm-lock.yaml
+apps/web/public/map
+apps/web/public/clues
+data/generated
+data/raw

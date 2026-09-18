@@ -1,0 +1,36 @@
+{
+  "$schema": "./cities.schema.json",
+  "schemaVersion": 1,
+  "cities": [
+    {
+      "id": "seoul",
+      "name": { "en": "Seoul", "ko": "서울" },
+      "referenceLocation": { "latitude": 37.5665, "longitude": 126.978 },
+      "clueAssetIds": []
+    },
+    {
+      "id": "busan",
+      "name": { "en": "Busan", "ko": "부산" },
+      "referenceLocation": { "latitude": 35.1796, "longitude": 129.0756 },
+      "clueAssetIds": []
+    },
+    {
+      "id": "incheon",
+      "name": { "en": "Incheon", "ko": "인천" },
+      "referenceLocation": { "latitude": 37.4563, "longitude": 126.7052 },
+      "clueAssetIds": []
+    },
+    {
+      "id": "daegu",
+      "name": { "en": "Daegu", "ko": "대구" },
+      "referenceLocation": { "latitude": 35.8714, "longitude": 128.6014 },
+      "clueAssetIds": []
+    },
+    {
+      "id": "daejeon",
+      "name": { "en": "Daejeon", "ko": "대전" },
+      "referenceLocation": { "latitude": 36.3504, "longitude": 127.3845 },
+      "clueAssetIds": []
+    }
+  ]
+}

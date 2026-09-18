@@ -1,0 +1,38 @@
+{
+  "name": "golukituki-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A geography location-guessing game, starting with South Korea.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @golukituki/core build && pnpm --filter @golukituki/web build && pnpm --filter @golukituki/worker build",
+    "dev": "pnpm --filter @golukituki/web build && concurrently --kill-others --names worker,web --prefix-colors magenta,cyan \"pnpm --filter @golukituki/worker dev\" \"pnpm --filter @golukituki/web dev\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "db:migrate:local": "pnpm --filter @golukituki/worker db:migrate:local",
+    "db:migrate:preview": "pnpm --filter @golukituki/worker db:migrate:preview",
+    "db:migrate:production": "pnpm --filter @golukituki/worker db:migrate:production",
+    "deploy:preview": "pnpm build && pnpm --filter @golukituki/worker deploy:preview",
+    "deploy:production": "pnpm build && pnpm --filter @golukituki/worker deploy:production",
+    "pipeline:test": "python -m unittest discover -s scripts/geodata/tests -v"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.10.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.12.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.70.0"
+  }
+}

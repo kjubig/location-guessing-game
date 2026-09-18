@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://golukituki.local/schemas/cities.schema.json",
+  "title": "GEOLUKITUKI city catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "cities"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "cities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/city" },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "city": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "referenceLocation", "clueAssetIds"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["en", "ko"],
+          "properties": {
+            "en": { "type": "string", "minLength": 1 },
+            "ko": { "type": "string", "minLength": 1 }
+          }
+        },
+        "referenceLocation": { "$ref": "#/$defs/coordinate" },
+        "clueAssetIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f-]{27,}$"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["latitude", "longitude"],
+      "properties": {
+        "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    }
+  }
+}
