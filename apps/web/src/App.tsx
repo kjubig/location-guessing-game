@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 
 import { MetroClue } from "./MetroClue";
 import { LeaderboardPanel } from "./LeaderboardPanel";
+import { TurnstileWidget } from "./TurnstileWidget";
 
 const GuessMap = lazy(() =>
   import("./GuessMap").then((module) => ({ default: module.GuessMap })),
@@ -58,6 +59,8 @@ export function App() {
   const [showResult, setShowResult] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string>();
+  const [turnstileToken, setTurnstileToken] = useState<string>();
+  const [turnstileAttempt, setTurnstileAttempt] = useState(0);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -81,13 +84,19 @@ export function App() {
     setError(undefined);
     try {
       const snapshot = await apiRequest<GameSnapshot>("/api/games", {
-        body: JSON.stringify({ nickname, mode: selectedMode }),
+        body: JSON.stringify({
+          nickname,
+          mode: selectedMode,
+          turnstileToken,
+        }),
         method: "POST",
       });
       localStorage.setItem(STORAGE_KEY, snapshot.gameId);
       setGame(snapshot);
       setGuess(undefined);
     } catch (requestError) {
+      setTurnstileToken(undefined);
+      setTurnstileAttempt((value) => value + 1);
       setError(
         requestError instanceof Error
           ? requestError.message
@@ -228,7 +237,16 @@ export function App() {
                 {error}
               </p>
             )}
-            <button className="primary-button" disabled={pending}>
+            <TurnstileWidget
+              errorLabel={t("turnstileError")}
+              key={turnstileAttempt}
+              loadingLabel={t("turnstileLoading")}
+              onToken={setTurnstileToken}
+            />
+            <button
+              className="primary-button"
+              disabled={pending || !turnstileToken}
+            >
               {pending ? t("loading") : t("startGame")}
             </button>
             <small>{t("fiveRounds")}</small>

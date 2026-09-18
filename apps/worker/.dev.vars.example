@@ -1,2 +1,3 @@
-# Copy this file to .dev.vars when M3 introduces Turnstile.
+# Optional local override. Wrangler already uses this official public test
+# secret from wrangler.jsonc; production and preview require real secrets.
 TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA

@@ -34,6 +34,14 @@ vi.mock("./LeaderboardPanel", () => ({
   ),
 }));
 
+vi.mock("./TurnstileWidget", () => ({
+  TurnstileWidget: ({ onToken }: { onToken: (token: string) => void }) => (
+    <button type="button" onClick={() => onToken("test-token")}>
+      Complete human verification
+    </button>
+  ),
+}));
+
 const firstRound: GameSnapshot = {
   completedRounds: [],
   currentRound: {
@@ -115,6 +123,9 @@ describe("satellite game flow", () => {
 
     render(<App />);
     await user.type(screen.getByLabelText("Twój nick"), "Tester");
+    await user.click(
+      screen.getByRole("button", { name: "Complete human verification" }),
+    );
     await user.click(screen.getByRole("button", { name: "Rozpocznij grę" }));
 
     expect(await screen.findByText(/Runda 1/)).toBeTruthy();
@@ -158,6 +169,9 @@ describe("satellite game flow", () => {
     render(<App />);
     await user.click(screen.getByRole("button", { name: /Metro/ }));
     await user.type(screen.getByLabelText("Twój nick"), "Tester");
+    await user.click(
+      screen.getByRole("button", { name: "Complete human verification" }),
+    );
     await user.click(screen.getByRole("button", { name: "Rozpocznij grę" }));
 
     expect(await screen.findByText(/Test metro clue/)).toBeTruthy();
@@ -165,6 +179,7 @@ describe("satellite game flow", () => {
     expect(JSON.parse(request.body as string)).toEqual({
       nickname: "Tester",
       mode: "metro",
+      turnstileToken: "test-token",
     });
   });
 });

@@ -46,6 +46,7 @@ export const nicknameSchema = z
 export const createGameRequestSchema = z.object({
   nickname: nicknameSchema,
   mode: gameModeSchema,
+  turnstileToken: z.string().min(1).max(2_048),
 });
 export type CreateGameRequest = z.input<typeof createGameRequestSchema>;
 

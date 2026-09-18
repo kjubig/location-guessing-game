@@ -19,14 +19,13 @@ export function LeaderboardPanel({
   title,
 }: LeaderboardPanelProps) {
   const [state, setState] = useState<
-    | { status: "loading" }
-    | { status: "ready"; value: LeaderboardResponse }
-    | { status: "error" }
-  >({ status: "loading" });
+    | { mode: GameMode; status: "ready"; value: LeaderboardResponse }
+    | { mode: GameMode; status: "error" }
+  >();
+  const currentState = state?.mode === mode ? state : undefined;
 
   useEffect(() => {
     const controller = new AbortController();
-    setState({ status: "loading" });
 
     void fetch(
       `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/leaderboard?mode=${mode}`,
@@ -38,12 +37,16 @@ export function LeaderboardPanel({
         if (!response.ok) {
           throw new Error((body as ApiErrorResponse).error.message);
         }
-        setState({ status: "ready", value: body as LeaderboardResponse });
+        setState({
+          mode,
+          status: "ready",
+          value: body as LeaderboardResponse,
+        });
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError")
           return;
-        setState({ status: "error" });
+        setState({ mode, status: "error" });
       });
 
     return () => controller.abort();
@@ -55,13 +58,14 @@ export function LeaderboardPanel({
         <h2 id={`leaderboard-${mode}`}>{title}</h2>
         <span>TOP 10</span>
       </div>
-      {state.status === "loading" ? (
+      {!currentState ? (
         <p className="leaderboard__status">{loadingLabel}</p>
-      ) : state.status === "error" || state.value.entries.length === 0 ? (
+      ) : currentState.status === "error" ||
+        currentState.value.entries.length === 0 ? (
         <p className="leaderboard__status">{emptyLabel}</p>
       ) : (
         <ol className="leaderboard__list">
-          {state.value.entries.map((entry) => (
+          {currentState.value.entries.map((entry) => (
             <li key={`${entry.rank}-${entry.nickname}`}>
               <span className="leaderboard__rank">{entry.rank}</span>
               <span className="leaderboard__nickname">{entry.nickname}</span>

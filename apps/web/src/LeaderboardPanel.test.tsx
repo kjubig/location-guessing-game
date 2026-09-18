@@ -35,9 +35,8 @@ describe("LeaderboardPanel", () => {
 
     expect(await screen.findByText("민수")).toBeTruthy();
     expect(screen.getByText("Player <script>")).toBeTruthy();
-    expect(fetchMock).toHaveBeenCalledWith(
-      "/api/leaderboard?mode=metro",
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
-    );
+    const call = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
+    expect(call[0]).toBe("/api/leaderboard?mode=metro");
+    expect(call[1].signal).toBeInstanceOf(AbortSignal);
   });
 });

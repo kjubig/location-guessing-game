@@ -197,6 +197,17 @@ a:focus-visible {
   color: var(--accent);
   font-weight: 700;
 }
+.turnstile {
+  min-height: 67px;
+  display: grid;
+  align-items: center;
+}
+.turnstile > small {
+  color: var(--muted);
+}
+.turnstile > .form-error {
+  color: var(--accent);
+}
 .game-screen {
   display: grid;
   grid-template-columns: minmax(320px, 0.85fr) minmax(420px, 1.15fr);

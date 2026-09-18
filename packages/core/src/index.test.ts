@@ -37,12 +37,28 @@ describe("nickname validation", () => {
   });
 
   it("parses the create-game contract", () => {
+    const turnstileToken = "test-token";
     expect(
-      createGameRequestSchema.parse({ nickname: "Kjubig", mode: "satellite" }),
-    ).toEqual({ nickname: "Kjubig", mode: "satellite" });
+      createGameRequestSchema.parse({
+        nickname: "Kjubig",
+        mode: "satellite",
+        turnstileToken,
+      }),
+    ).toEqual({ nickname: "Kjubig", mode: "satellite", turnstileToken });
     expect(
-      createGameRequestSchema.parse({ nickname: "Kjubig", mode: "metro" }),
-    ).toEqual({ nickname: "Kjubig", mode: "metro" });
+      createGameRequestSchema.parse({
+        nickname: "Kjubig",
+        mode: "metro",
+        turnstileToken,
+      }),
+    ).toEqual({ nickname: "Kjubig", mode: "metro", turnstileToken });
+    expect(
+      createGameRequestSchema.safeParse({
+        nickname: "Kjubig",
+        mode: "metro",
+        turnstileToken: "x".repeat(2_049),
+      }).success,
+    ).toBe(false);
   });
 });
 

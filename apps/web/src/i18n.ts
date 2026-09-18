@@ -64,6 +64,8 @@ const resources = {
       leaderboardTitle: "Najlepsze wyniki",
       leaderboardLoading: "Ładuję ranking…",
       leaderboardEmpty: "Ranking czeka na pierwszy ukończony wynik.",
+      turnstileLoading: "Ładuję weryfikację…",
+      turnstileError: "Nie udało się uruchomić weryfikacji. Odśwież stronę.",
     },
   },
   en: {
@@ -129,6 +131,8 @@ const resources = {
       leaderboardTitle: "Best scores",
       leaderboardLoading: "Loading leaderboard…",
       leaderboardEmpty: "The leaderboard is waiting for its first result.",
+      turnstileLoading: "Loading verification…",
+      turnstileError: "Verification could not start. Refresh the page.",
     },
   },
 } as const;

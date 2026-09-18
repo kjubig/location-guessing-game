@@ -4,7 +4,7 @@ import type {
   GameSnapshot,
   LeaderboardEntry,
 } from "@golukituki/core";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { createApp } from "../src/app";
 import type { Bindings } from "../src/env";
@@ -83,8 +83,20 @@ class MemoryGameRepository implements GameRepository {
 }
 
 function testApp(repository = new MemoryGameRepository()) {
-  return createApp({ repositoryFactory: () => repository });
+  return createApp({
+    rateLimiterFactory: () => ({
+      limit: () => Promise.resolve({ success: true }),
+    }),
+    repositoryFactory: () => repository,
+    turnstileVerifier: { verify: () => Promise.resolve(true) },
+  });
 }
+
+const validCreateRequest = {
+  nickname: "Player",
+  mode: "satellite",
+  turnstileToken: "test-token",
+} as const;
 
 describe("worker API", () => {
   it("reports health without exposing cacheable state", async () => {
@@ -111,6 +123,7 @@ describe("worker API", () => {
         body: JSON.stringify({
           nickname: "  \u1106\u1175\u11AB\u1109\u116E  ",
           mode: "satellite",
+          turnstileToken: "test-token",
         }),
         headers: { "Content-Type": "application/json" },
         method: "POST",
@@ -129,7 +142,11 @@ describe("worker API", () => {
     const response = await testApp().request(
       "http://localhost/api/games",
       {
-        body: JSON.stringify({ nickname: "Metro Player", mode: "metro" }),
+        body: JSON.stringify({
+          nickname: "Metro Player",
+          mode: "metro",
+          turnstileToken: "test-token",
+        }),
         headers: { "Content-Type": "application/json" },
         method: "POST",
       },
@@ -145,7 +162,11 @@ describe("worker API", () => {
     const response = await testApp().request(
       "http://localhost/api/games",
       {
-        body: JSON.stringify({ nickname: "x", mode: "satellite" }),
+        body: JSON.stringify({
+          nickname: "x",
+          mode: "satellite",
+          turnstileToken: "test-token",
+        }),
         headers: { "Content-Type": "application/json" },
         method: "POST",
       },
@@ -180,6 +201,73 @@ describe("worker API", () => {
       points: 3_910,
     });
     expect(body.currentRound?.roundNumber).toBe(2);
+  });
+
+  it("rejects failed human verification before creating a game", async () => {
+    const app = createApp({
+      rateLimiterFactory: () => ({
+        limit: () => Promise.resolve({ success: true }),
+      }),
+      repositoryFactory: () => new MemoryGameRepository(),
+      turnstileVerifier: { verify: () => Promise.resolve(false) },
+    });
+    const response = await app.request(
+      "http://localhost/api/games",
+      {
+        body: JSON.stringify(validCreateRequest),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      },
+      testEnvironment,
+    );
+
+    expect(response.status).toBe(403);
+    await expect(response.json()).resolves.toMatchObject({
+      error: { code: "TURNSTILE_FAILED" },
+    });
+  });
+
+  it("rate limits game creation before human verification", async () => {
+    const verify = vi.fn().mockResolvedValue(true);
+    const app = createApp({
+      rateLimiterFactory: () => ({
+        limit: () => Promise.resolve({ success: false }),
+      }),
+      repositoryFactory: () => new MemoryGameRepository(),
+      turnstileVerifier: { verify },
+    });
+    const response = await app.request(
+      "http://localhost/api/games",
+      {
+        body: JSON.stringify(validCreateRequest),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      },
+      testEnvironment,
+    );
+
+    expect(response.status).toBe(429);
+    expect(verify).not.toHaveBeenCalled();
+  });
+
+  it("rejects an oversized body even without a content-length header", async () => {
+    const response = await testApp().request(
+      new Request("http://localhost/api/games", {
+        body: JSON.stringify({
+          ...validCreateRequest,
+          turnstileToken: "x".repeat(3_000),
+        }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      }),
+      undefined,
+      testEnvironment,
+    );
+
+    expect(response.status).toBe(413);
+    await expect(response.json()).resolves.toMatchObject({
+      error: { code: "PAYLOAD_TOO_LARGE" },
+    });
   });
 
   it("returns structured errors for a missing game and route", async () => {

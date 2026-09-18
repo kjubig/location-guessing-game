@@ -18,9 +18,15 @@ import {
   RoundAlreadyGuessedError,
   type GameRepository,
 } from "./game-repository";
+import {
+  CloudflareTurnstileVerifier,
+  type TurnstileVerifier,
+} from "./turnstile";
 
 interface AppDependencies {
+  rateLimiterFactory?: (bindings: Bindings) => RateLimit;
   repositoryFactory?: (bindings: Bindings) => GameRepository;
+  turnstileVerifier?: TurnstileVerifier;
 }
 
 function errorResponse(code: string, message: string): ApiErrorResponse {
@@ -30,7 +36,11 @@ function errorResponse(code: string, message: string): ApiErrorResponse {
 async function readJson(request: Request): Promise<unknown> {
   const contentLength = Number(request.headers.get("content-length") ?? 0);
   if (contentLength > 2_048) throw new Error("PAYLOAD_TOO_LARGE");
-  return request.json();
+  const body = await request.text();
+  if (new TextEncoder().encode(body).byteLength > 2_048) {
+    throw new Error("PAYLOAD_TOO_LARGE");
+  }
+  return JSON.parse(body) as unknown;
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -38,11 +48,26 @@ export function createApp(dependencies: AppDependencies = {}) {
   const repositoryFactory =
     dependencies.repositoryFactory ??
     ((bindings: Bindings) => new D1GameRepository(bindings.DB));
+  const rateLimiterFactory =
+    dependencies.rateLimiterFactory ??
+    ((bindings: Bindings) => bindings.GAME_CREATION_LIMITER);
+  const turnstileVerifier =
+    dependencies.turnstileVerifier ?? new CloudflareTurnstileVerifier();
 
   app.use("/api/*", async (context, next) => {
+    const startedAt = Date.now();
     await next();
     context.header("Cache-Control", "no-store");
     context.header("X-Content-Type-Options", "nosniff");
+    console.info(
+      JSON.stringify({
+        durationMs: Date.now() - startedAt,
+        environment: context.env.APP_ENV,
+        event: "api_request",
+        method: context.req.method,
+        status: context.res.status,
+      }),
+    );
   });
 
   app.get("/api/health", (context) => {
@@ -56,6 +81,20 @@ export function createApp(dependencies: AppDependencies = {}) {
   });
 
   app.post("/api/games", async (context) => {
+    const remoteIp = context.req.header("CF-Connecting-IP");
+    const rateLimit = await rateLimiterFactory(context.env).limit({
+      key: remoteIp ?? "local-development",
+    });
+    if (!rateLimit.success) {
+      return context.json(
+        errorResponse(
+          "RATE_LIMITED",
+          "Too many games were started. Try again in a minute.",
+        ),
+        429,
+      );
+    }
+
     const parsed = createGameRequestSchema.safeParse(
       await readJson(context.req.raw),
     );
@@ -69,7 +108,36 @@ export function createApp(dependencies: AppDependencies = {}) {
       );
     }
 
-    const game = await repositoryFactory(context.env).createGame(parsed.data);
+    let verified: boolean;
+    try {
+      verified = await turnstileVerifier.verify({
+        remoteIp,
+        secret: context.env.TURNSTILE_SECRET_KEY,
+        token: parsed.data.turnstileToken,
+      });
+    } catch {
+      return context.json(
+        errorResponse(
+          "VERIFICATION_UNAVAILABLE",
+          "Human verification is temporarily unavailable. Try again later.",
+        ),
+        503,
+      );
+    }
+    if (!verified) {
+      return context.json(
+        errorResponse(
+          "TURNSTILE_FAILED",
+          "Human verification failed. Please try again.",
+        ),
+        403,
+      );
+    }
+
+    const game = await repositoryFactory(context.env).createGame({
+      mode: parsed.data.mode,
+      nickname: parsed.data.nickname,
+    });
     return context.json(game, 201);
   });
 
@@ -155,8 +223,13 @@ export function createApp(dependencies: AppDependencies = {}) {
       status = 503;
       code = "CONTENT_UNAVAILABLE";
       message = "Not enough enabled clues are available";
+    } else if (/D1|database|quota/i.test(error.message)) {
+      status = 503;
+      code = "SERVICE_UNAVAILABLE";
+      message = "The game service is temporarily unavailable";
+      console.error("Storage operation failed", { name: error.name });
     } else {
-      console.error("Unhandled API error", error);
+      console.error("Unhandled API error", { name: error.name });
     }
 
     return context.json(errorResponse(code, message), status);
