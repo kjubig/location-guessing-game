@@ -156,7 +156,9 @@ describe("satellite game flow", () => {
     expect(
       (
         await screen.findAllByText(
-          (content) => content.replace(/\s/g, "") === "3910pkt",
+          (_content, element) =>
+            element?.tagName === "STRONG" &&
+            element.textContent?.replace(/\D/g, "") === "3910",
         )
       ).length,
     ).toBeGreaterThan(0);
