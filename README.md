@@ -28,9 +28,11 @@ M0–M4 application work is complete in the local environment and includes:
 - bilingual source/licence page, keyboard/touch map controls, reduced motion,
   responsive layout, and explicit asset budgets.
 
-The first public Cloudflare deployment, human review of all clues, and structured
-score tuning remain owner steps. See [the
-implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.md).
+M5 first-public-release work is in progress. Production and preview Workers,
+D1 and Turnstile are online; automatic GitHub builds and final interactive
+smoke tests remain. Human review of all clues and structured score tuning are
+also unfinished. See [the implementation plan](docs/PLAN.md) and [architecture
+decisions](docs/DECISIONS.md).
 
 ## Learn how it works
 
@@ -50,6 +52,8 @@ implementation plan](docs/PLAN.md) and [architecture decisions](docs/DECISIONS.m
   abuse controls, and verification notes.
 - [M4 implementation journal](docs/milestones/M4.md) — 30-city content pipeline,
   accessibility, release checks, failures, and operations.
+- [M5 release journal](docs/milestones/M5.md) — D1, Turnstile, Workers Builds,
+  environment isolation, deployment and smoke testing.
 - [Sources and licences](docs/SOURCES.md) — attribution and reuse boundaries.
 - [Release checklist](docs/RELEASE_CHECKLIST.md) — security, browser, content,
   migration, and rollback checks before production.
@@ -88,8 +92,14 @@ Cloudflare Workers Builds connects directly to the private GitHub repository:
 - production and preview use separate D1 databases;
 - GitHub Actions validates code but does not own production credentials.
 
-The zero UUID values in `apps/worker/wrangler.jsonc` are intentional placeholders.
-Replace them with the IDs returned after creating both D1 databases.
+Current manual M5 deployments:
+
+- production: <https://golukituki.golukituki-worker.workers.dev>;
+- preview: <https://golukituki-preview.golukituki-worker.workers.dev>.
+
+The production and preview D1 bindings in `apps/worker/wrangler.jsonc` contain
+their Cloudflare database IDs. The remaining local zero UUID is intentional:
+local development stores its emulated D1 data under `.wrangler/`.
 
 ## Licensing
 

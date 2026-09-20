@@ -1,14 +1,17 @@
 # Wdrożenie: GitHub, Cloudflare Worker i D1
 
-Status: prywatne repozytorium GitHub połączone; konfiguracja Cloudflare oczekuje
-na wykonanie przez właściciela
-Ostatnia aktualizacja: 2026-09-18
+Status: M5 w toku; D1, Turnstile oraz Workery production/preview działają;
+pozostało połączenie Workers Builds i pełne testy gry
+Ostatnia aktualizacja: 2026-09-20
 
 Ten dokument celowo rozdziela trzy rzeczy, które często są mylone:
 
 - **GitHub Actions (CI)** sprawdza kod, ale niczego nie wdraża;
 - **Cloudflare Workers Builds (CD)** obserwuje GitHuba i publikuje Workera;
 - **D1** jest osobną bazą danych, której migracje wykonujemy jawnie.
+
+Pełny dziennik pierwszego wdrożenia wraz z wyjaśnieniem przepływu żądań i
+protokołem testów znajduje się w [`milestones/M5.md`](milestones/M5.md).
 
 ## 1. Co już przygotowuje repozytorium
 
@@ -23,9 +26,9 @@ Ten dokument celowo rozdziela trzy rzeczy, które często są mylone:
 Oddzielna baza podglądowa jest ważna: rozegranie testowej partii nie może
 zmienić rankingu produkcyjnego.
 
-Identyfikatory baz w konfiguracji są na razie zerowymi placeholderami. Nie są
-sekretami, ale przed zdalnym wdrożeniem trzeba zastąpić je UUID-ami zwróconymi
-przez Cloudflare.
+Identyfikatory produkcyjnej i podglądowej bazy zostały zapisane w konfiguracji
+2026-09-20. Nie są sekretami. Zerowy identyfikator pozostaje wyłącznie w lokalnym
+wiązaniu i wskazuje Wranglerowi, że ma używać lokalnych plików `.wrangler/`.
 
 ## 2. Utworzenie prywatnego repozytorium GitHub
 
@@ -72,6 +75,11 @@ pnpm db:migrate:preview
 pnpm db:migrate:production
 ```
 
+Stan projektu: wykonane 2026-09-20. Migracje `0001`–`0005` najpierw przeszły na
+preview, a następnie na produkcji. Kontrolne zapytanie tylko do odczytu zwróciło
+w obu bazach 5 aktywnych wskazówek metra, 90 aktywnych wskazówek satelitarnych i
+5 wyłączonych fixture'ów M1.
+
 Wrangler pokazuje listę migracji przed wykonaniem. D1 wykonuje migrację
 transakcyjnie: nieudany plik jest wycofywany, a wcześniejsze poprawne migracje
 pozostają zastosowane. Przed zdalnym wykonaniem zawsze najpierw uruchom:
@@ -98,10 +106,17 @@ Ustawienia buildu:
 | Deploy command                       | `corepack pnpm --filter @golukituki/worker deploy:production`    |
 | Non-production branch deploy command | `corepack pnpm --filter @golukituki/worker deploy:preview`       |
 
-Włącz **Builds for non-production branches**. Produkcyjne polecenie wykonuje
-`wrangler deploy --env production`, natomiast polecenie podglądowe wykonuje
-`wrangler versions upload --env preview`. Upload wersji tworzy publiczny,
-wersjonowany adres podglądu, ale nie promuje jej do aktywnego wdrożenia.
+Połącz repozytorium osobno z Workerem `golukituki` oraz
+`golukituki-preview`, ponieważ są to dwa środowiskowe Workery z innymi bazami,
+sekretami i buildowymi sitekeyami. Produkcyjny Worker nasłuchuje `main`.
+Podglądowy Worker używa `wrangler deploy --env preview` dla swojej gałęzi
+produkcyjnej i `wrangler versions upload --env preview` dla innych gałęzi.
+
+Włącz **Builds for non-production branches** na Workerze preview. Upload wersji
+tworzy publiczny, wersjonowany adres podglądu, ale nie promuje jej do aktywnego
+wdrożenia. Pierwsze utworzenie Workera preview jest wyjątkiem: trzeba jeden raz
+wykonać `wrangler deploy --env preview`, ponieważ nie można wgrać wersji do
+nieistniejącego jeszcze Workera. Ten bootstrap wykonano 2026-09-20.
 
 Cloudflare wykrywa wersję Node z `.node-version`, a wersję pnpm z pola
 `packageManager` w `package.json`. `--frozen-lockfile` przerywa build, jeżeli
@@ -109,10 +124,17 @@ manifesty i `pnpm-lock.yaml` przestaną być zgodne.
 
 ## 5. Turnstile przed pierwszym wdrożeniem M3
 
-Utwórz osobne widgety Turnstile dla preview i produkcji. Cloudflare zaleca
-rozdzielenie środowisk. W Hostname Management podaje się sam hostname bez
-`https://`, portu ani ścieżki. Gwiazdki nie są obsługiwane, ale wpisanie domeny
-nadrzędnej automatycznie dopuszcza jej subdomeny.
+Stan projektu: wykonane 2026-09-20. Istnieją osobne widgety `GEOLUKITUKI
+production` i `GEOLUKITUKI preview`. Cloudflare zaleca rozdzielenie środowisk.
+W Hostname Management podaje się sam hostname bez `https://`, portu ani ścieżki.
+Gwiazdki nie są obsługiwane, ale wpisanie domeny nadrzędnej automatycznie
+dopuszcza jej subdomeny.
+
+Produkcja dopuszcza wyłącznie
+`golukituki.golukituki-worker.workers.dev`. Preview dopuszcza nadrzędny hostname
+`golukituki-worker.workers.dev`, ponieważ adresy gałęzi mają dynamiczny prefiks
+`<wersja-lub-gałąź>-golukituki-preview`. Nie łączy to sekretów: każdy Worker ma
+własny `TURNSTILE_SECRET_KEY` odpowiadający innemu widgetowi.
 
 Dla każdego środowiska są dwie różne wartości:
 
@@ -152,6 +174,14 @@ Sprawdź kolejno:
 
 Adresy preview są publiczne. Jeśli później pojawią się tam dane, których nie
 powinni widzieć wszyscy znający URL, trzeba zabezpieczyć je Cloudflare Access.
+
+Pierwsze adresy wdrożeń M5:
+
+- produkcja: `https://golukituki.golukituki-worker.workers.dev`;
+- stały preview: `https://golukituki-preview.golukituki-worker.workers.dev`.
+
+2026-09-20 oba adresy zwróciły HTML ze statusem 200, a `/api/health` odpowiednio
+`"environment":"production"` i `"environment":"preview"`.
 
 ## 7. Obserwowalność i wyczerpanie limitów
 

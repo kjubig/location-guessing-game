@@ -1,7 +1,7 @@
 # GEOLUKITUKI MVP — implementation plan
 
-Status: M0–M4 code complete; owner deployment and content review pending
-Last updated: 2026-09-19
+Status: M0–M4 code complete; M5 first public deployment in progress
+Last updated: 2026-09-20
 
 ## Goal
 
@@ -24,13 +24,14 @@ must operate within free service tiers.
 
 ## Milestone overview
 
-| Milestone | Outcome                                           | Review gate                                 |
-| --------- | ------------------------------------------------- | ------------------------------------------- |
-| M0        | Repository foundation and first public deployment | Public health/hello page from `main`        |
-| M1        | Complete satellite-mode vertical slice            | Five secure rounds on a small fixture pool  |
-| M2        | Metro pipeline and complete metro mode            | Real OSM geometry with no coordinate leak   |
-| M3        | Durable ranking and abuse controls                | Only verified completed games enter top ten |
-| M4        | Full content, polish, licenses, and release QA    | Definition of done satisfied                |
+| Milestone | Outcome                                           | Review gate                                      |
+| --------- | ------------------------------------------------- | ------------------------------------------------ |
+| M0        | Repository foundation and first public deployment | Public health/hello page from `main`             |
+| M1        | Complete satellite-mode vertical slice            | Five secure rounds on a small fixture pool       |
+| M2        | Metro pipeline and complete metro mode            | Real OSM geometry with no coordinate leak        |
+| M3        | Durable ranking and abuse controls                | Only verified completed games enter top ten      |
+| M4        | Full content, polish, licenses, and release QA    | Definition of done satisfied                     |
+| M5        | First operated Cloudflare release                 | Production and isolated preview pass smoke tests |
 
 ## M0 — foundation and first deployment
 
@@ -262,6 +263,39 @@ must operate within free service tiers.
 
 - review the final city/clue selection and attribution page.
 
+## M5 — first public Cloudflare release
+
+### Scope
+
+1. Create independent production and preview D1 databases.
+2. Replace the remote UUID placeholders and apply all migrations preview-first.
+3. Create separate Turnstile widgets and store public sitekeys and Worker
+   secrets in their correct environments.
+4. Connect the private GitHub repository to Workers Builds.
+5. Deploy `main` to production and a non-production branch to the isolated
+   preview Worker.
+6. Run health, gameplay, leaderboard, answer-leak, SPA refresh and responsive
+   smoke tests against both deployed URLs.
+7. Record commands, configuration boundaries, results and recovery procedures
+   in the M5 technical journal.
+
+### Tests and verification
+
+- `/api/health` reports `production` and `preview` on the correct hosts;
+- each environment reads and writes only its own D1 database;
+- Turnstile succeeds on allowed hostnames and fails closed without a secret;
+- one complete game per mode works on production and preview;
+- GitHub Actions and Workers Builds are green for the release commit;
+- a preview leaderboard entry never appears in production.
+
+### Exit criteria
+
+- pushing to `main` automatically updates the public production URL;
+- a non-production branch produces a public, isolated preview version;
+- secrets exist only in Cloudflare configuration, never in Git or built assets;
+- deployment, migration, smoke-test and rollback steps are reproducible from
+  the repository documentation.
+
 ## Cross-cutting workstreams
 
 ### Data and licensing
@@ -331,6 +365,9 @@ abuse controls, 30-city/90-image content, licences, accessibility controls, and
 release budgets are present. The simpler EOxCloudless raster decision replaced
 the earlier filtered-vector-basemap proposal for the non-commercial MVP.
 
-The GitHub repository exists. Public Cloudflare deployment, real D1 IDs,
-Turnstile widgets, a human review of all 90 clues, and structured score tuning
-remain owner actions because they require account access or human judgement.
+The GitHub repository exists. M5 now has separate migrated D1 databases,
+separate Turnstile widgets/secrets and live production/preview Workers. Health
+and static-root smoke tests pass. Connecting both Workers to the private GitHub
+repository, verifying a branch preview and completing interactive gameplay
+smoke tests remain. A human review of all 90 clues and structured score tuning
+also remain owner judgement tasks.

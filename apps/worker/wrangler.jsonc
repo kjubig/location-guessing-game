@@ -38,7 +38,7 @@
         {
           "binding": "DB",
           "database_name": "golukituki-production",
-          "database_id": "00000000-0000-0000-0000-000000000001",
+          "database_id": "0eaa0361-74af-44fc-b3c5-cdc8c87f0445",
           "migrations_dir": "../../migrations",
         },
       ],
@@ -59,7 +59,7 @@
         {
           "binding": "DB",
           "database_name": "golukituki-preview",
-          "database_id": "00000000-0000-0000-0000-000000000002",
+          "database_id": "aef549a4-1288-4026-ab75-baf3ed48fd33",
           "migrations_dir": "../../migrations",
         },
       ],
