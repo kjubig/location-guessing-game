@@ -11,17 +11,27 @@ const EOX_CLOUDLESS_ATTRIBUTION =
 const EOX_CLOUDLESS_TILES =
   "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg";
 
-export function createGuessMapStyle(mode: GameMode): StyleSpecification {
+export function createGuessMapStyle(
+  mode: GameMode,
+  assetOrigin?: string,
+): StyleSpecification {
   const satelliteContext = mode === "metro";
+  const koreaDataUrl = assetOrigin
+    ? new URL("/map/south-korea.geojson", assetOrigin).href
+    : "/map/south-korea.geojson";
 
   return {
     version: 8,
     sources: {
-      korea: {
-        type: "geojson",
-        data: "/map/south-korea.geojson",
-        attribution: NATURAL_EARTH_ATTRIBUTION,
-      },
+      ...(satelliteContext
+        ? {
+            korea: {
+              type: "geojson" as const,
+              data: koreaDataUrl,
+              attribution: NATURAL_EARTH_ATTRIBUTION,
+            },
+          }
+        : {}),
       ...(satelliteContext
         ? {
             "satellite-context": {
@@ -39,7 +49,7 @@ export function createGuessMapStyle(mode: GameMode): StyleSpecification {
         id: "background",
         type: "background",
         paint: {
-          "background-color": satelliteContext ? "#12201c" : "#dce8df",
+          "background-color": satelliteContext ? "#12201c" : "#a9c9c7",
         },
       },
       ...(satelliteContext
@@ -53,25 +63,18 @@ export function createGuessMapStyle(mode: GameMode): StyleSpecification {
                 "raster-contrast": 0.08,
               },
             },
-          ]
-        : [
             {
-              id: "korea-fill",
-              type: "fill" as const,
+              id: "korea-outline",
+              type: "line" as const,
               source: "korea",
-              paint: { "fill-color": "#f5f1e7", "fill-opacity": 1 },
+              paint: {
+                "line-color": "#e8f0e8",
+                "line-opacity": 0.55,
+                "line-width": 1,
+              },
             },
-          ]),
-      {
-        id: "korea-outline",
-        type: "line",
-        source: "korea",
-        paint: {
-          "line-color": satelliteContext ? "#e8f0e8" : "#1f573f",
-          "line-opacity": satelliteContext ? 0.55 : 1,
-          "line-width": satelliteContext ? 1 : 1.5,
-        },
-      },
+          ]
+        : []),
     ],
   };
 }

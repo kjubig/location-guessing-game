@@ -12,6 +12,13 @@ import type { Coordinate, GameMode, RoundResult } from "@golukituki/core";
 
 import { createGuessMapStyle } from "./guessMapStyle";
 
+const KOREA_OVERLAY_BOUNDS = {
+  east: 131.862522,
+  north: 38.624335,
+  south: 33.197577,
+  west: 124.613617,
+} as const;
+
 interface GuessMapProps {
   disabled?: boolean;
   expanded?: boolean;
@@ -34,6 +41,7 @@ export function GuessMap({
   selected,
 }: GuessMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const countryOverlayRef = useRef<HTMLImageElement>(null);
   const mapRef = useRef<MapLibreMap>(null);
   const markersRef = useRef<Marker[]>([]);
   const disabledRef = useRef(disabled);
@@ -56,10 +64,12 @@ export function GuessMap({
     const map = new maplibregl.Map({
       container: containerRef.current,
       center: [127.7, 36.25],
-      zoom: 5.4,
+      zoom: mode === "satellite" ? 5.8 : 5.4,
       minZoom: 5,
       maxZoom: 12,
-      style: createGuessMapStyle(mode),
+      // Metro still uses MapLibre's GeoJSON outline. Satellite mode renders
+      // its outline as a DOM overlay below, independently of the map worker.
+      style: createGuessMapStyle(mode, window.location.origin),
       attributionControl: false,
     });
     map.addControl(
@@ -67,6 +77,26 @@ export function GuessMap({
       "top-right",
     );
     map.addControl(new maplibregl.AttributionControl({ compact: false }));
+    const positionCountryOverlay = () => {
+      const overlay = countryOverlayRef.current;
+      if (!overlay || mode !== "satellite") return;
+      const northWest = map.project([
+        KOREA_OVERLAY_BOUNDS.west,
+        KOREA_OVERLAY_BOUNDS.north,
+      ]);
+      const southEast = map.project([
+        KOREA_OVERLAY_BOUNDS.east,
+        KOREA_OVERLAY_BOUNDS.south,
+      ]);
+      overlay.style.left = `${northWest.x}px`;
+      overlay.style.top = `${northWest.y}px`;
+      overlay.style.width = `${southEast.x - northWest.x}px`;
+      overlay.style.height = `${southEast.y - northWest.y}px`;
+    };
+    map.on("load", positionCountryOverlay);
+    map.on("move", positionCountryOverlay);
+    map.on("resize", positionCountryOverlay);
+    positionCountryOverlay();
     map.on("click", (event: MapMouseEvent) => {
       if (!disabledRef.current) {
         onSelectRef.current?.({
@@ -77,6 +107,9 @@ export function GuessMap({
     });
     mapRef.current = map;
     return () => {
+      map.off("load", positionCountryOverlay);
+      map.off("move", positionCountryOverlay);
+      map.off("resize", positionCountryOverlay);
       map.remove();
       mapRef.current = null;
     };
@@ -154,11 +187,11 @@ export function GuessMap({
       ).matches;
       map.easeTo({
         center: [127.7, 36.25],
-        zoom: 5.4,
+        zoom: mode === "satellite" ? 5.8 : 5.4,
         duration: reducedMotion ? 0 : 400,
       });
     }
-  }, [result, selected]);
+  }, [mode, result, selected]);
 
   const selectCenter = () => {
     const center = mapRef.current?.getCenter();
@@ -174,6 +207,16 @@ export function GuessMap({
         aria-label={label}
         role="region"
       />
+      {mode === "satellite" && (
+        <img
+          alt=""
+          aria-hidden="true"
+          className="guess-map__country-overlay"
+          draggable="false"
+          ref={countryOverlayRef}
+          src="/map/south-korea-overlay.svg"
+        />
+      )}
       {!disabled && (
         <button
           className="map-center-button"

@@ -302,6 +302,8 @@ a:focus-visible {
   display: flex;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
+  border-radius: 18px;
 }
 .guess-map {
   width: 100%;
@@ -309,6 +311,17 @@ a:focus-visible {
   min-height: 560px;
   overflow: hidden;
   border-radius: 18px;
+}
+.guess-map__country-overlay {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+.guess-map .maplibregl-marker {
+  z-index: 2;
 }
 .map-center-button,
 .map-expand-button {
